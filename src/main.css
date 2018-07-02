@@ -1,55 +1,90 @@
 body {
   font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
-  font-size: 30px;
-  margin: 0;
-  text-align: center;
-}
-
-img {
-  margin: 20px 0;
-  max-width: 200px;
 }
 
 /* Own */
 
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 60vh;
-  justify-content: space-around;
-  align-items: center;
+.global {
+  display: grid;
+  grid-template-columns: 10% 90%;
 }
 
-.flex {
+.menu {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.flex div {
-  margin-top: 20px;
+.menu button {
+  margin-top: 10px;
+}
+
+.container-home, .container-dash, .container-objectives, .container-challenges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.form-connect {
+  margin-top: 25px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+}
+
+.input {
+  margin-top: 15px;
 }
 
 .greetings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: skyblue;
   font-size: 30px;
+  margin-top: 25px;
 }
 
-.options {
-  font-size: 13px;
-  font-style: italic;
-  color: #CECECE;
+.dashboard {
+  margin-top: 25px;
 }
 
-.button-validate {
-  width: 100px;
-  font-size: 12px;
-  border-radius: 10px;
-  padding: 3px;
-  box-shadow: 0 0 4px grey;
+.btn-dash {
+  margin-top: 50px;
+  width: 150px;
 }
 
-.radio-options {
-  margin-right: 15px;
+/* Activities Page */
+
+.subtitle-activities {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.table-activities td {
+  border: 1px solid grey;
+  padding: 2px 30px 2px 30px;
+}
+
+.container-prog-bar {
+  margin-top: 50px;
+}
+
+.prog-bar-global {
+  display: inline-block;
+  width: 300px;
+  box-shadow: 0 0 6px grey;
+  text-align: center;
+}
+
+.prog-bar-color {
+  width: 151px;
+  background-color: papayawhip;
+}
+
+.prog-bar-annotations {
+  margin-left: 15px;
+  display: inline-block;
 }
