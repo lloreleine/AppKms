@@ -1,0 +1,55 @@
+body {
+  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  font-size: 30px;
+  margin: 0;
+  text-align: center;
+}
+
+img {
+  margin: 20px 0;
+  max-width: 200px;
+}
+
+/* Own */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex div {
+  margin-top: 20px;
+}
+
+.greetings {
+  color: skyblue;
+  font-size: 30px;
+}
+
+.options {
+  font-size: 13px;
+  font-style: italic;
+  color: #CECECE;
+}
+
+.button-validate {
+  width: 100px;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 3px;
+  box-shadow: 0 0 4px grey;
+}
+
+.radio-options {
+  margin-right: 15px;
+}
