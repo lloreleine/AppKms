@@ -1,8 +1,11 @@
 module Home exposing (viewHome)
 
+import Messages exposing (..)
+import Model exposing (init, Model)
+import Types exposing (..)
 import Html exposing (Html, text, div, img, input, button, form, label)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked)
-import Html.Events exposing (onInput, onClick)
+import Html.Events exposing (onInput, onClick, onSubmit)
 
 
 ---- VIEW ----
@@ -10,21 +13,23 @@ import Html.Events exposing (onInput, onClick)
 
 viewHome : Model -> Html Msg
 viewHome model =
-    div [ class "container" ]
+    div [ class "container-home" ]
         [ text "Welcome to App Kilometer"
         , displayForm model
-        , displayName model.username
+        , displayGreetings model.username
         ]
 
 
 displayForm : Model -> Html Msg
 displayForm model =
     if model.connected == False then
-        form [ onSubmit Register ]
-            [ input
+        form [ class "form-connect", onSubmit Register ]
+            [ text "Please, enter your name:"
+            , input
                 [ type_ "text"
                 , value model.current
                 , onInput SaveName
+                , class "input"
                 ]
                 []
             , button
@@ -37,8 +42,8 @@ displayForm model =
         div [] [ text "" ]
 
 
-displayName : String -> Html Msg
-displayName name =
+displayGreetings : String -> Html Msg
+displayGreetings name =
     let
         greetings =
             "Hello, " ++ name ++ ". "
