@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 import Dashboard exposing (viewDash)
+import Objectives exposing (viewObjectives)
 import Html exposing (Html, text, div, img, input, button, form, label)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked)
 import Html.Events exposing (onInput, onClick, onSubmit)
@@ -168,16 +169,6 @@ displayGreetings name =
                 , text "What do you want to do?"
                 , button [ class "btn-dash", onClick GoToDashboard ] [ text "Go to my dashboard" ]
                 ]
-
-
-
--- Objectives Page --
-
-
-viewObjectives : Model -> Html Msg
-viewObjectives model =
-    div [ class "container-objectives" ]
-        [ text "Objectives Page" ]
 
 
 

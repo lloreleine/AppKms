@@ -79,12 +79,25 @@ body {
   text-align: center;
 }
 
-.prog-bar-color {
-  width: 151px;
-  background-color: papayawhip;
-}
-
 .prog-bar-annotations {
   margin-left: 15px;
   display: inline-block;
+}
+
+/* Objectives Page */
+
+.subtitle-objectives {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+/* Set Objective */
+
+.set-objective {
+  margin-top: 50px;
+  display: flex;
+}
+
+.btn-set-objective {
+  margin-left: 15px;
 }

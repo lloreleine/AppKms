@@ -1,5 +1,6 @@
 module Dashboard exposing (viewDash)
 
+import Objectives exposing (viewObjectives)
 import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
 
@@ -10,64 +11,6 @@ type alias Activity =
     , kms : Int
     , typeOf : String
     }
-
-
-type alias Destination =
-    { name : String
-    , kms : Float
-    }
-
-
-displayProgressionBar totalKms =
-    let
-        destinationsList : List Destination
-        destinationsList =
-            [ { name = "Marseille => Aix"
-              , kms = 34
-              }
-            , { name = "Lille => Hardelot"
-              , kms = 115
-              }
-            , { name = "Paris => Lille"
-              , kms = 225
-              }
-            , { name = "Paris => Barcelone"
-              , kms = 1069
-              }
-            ]
-    in
-        div []
-            (List.map
-                (\destination ->
-                    div [ class "container-prog-bar" ]
-                        [ div
-                            [ class "prog-bar-global" ]
-                            [ div
-                                [ style
-                                    [ ( "background-color", "papayawhip" )
-                                    , ( "width", (toString (totalKms * 300 / destination.kms)) ++ "px" )
-                                    ]
-                                ]
-                                [ text ((toString (totalKms * 100 / destination.kms)) ++ "%") ]
-                            ]
-                        , div [ class "prog-bar-annotations" ] [ text ("/ " ++ (toString destination.kms) ++ " kms - " ++ destination.name) ]
-                        ]
-                )
-                destinationsList
-            )
-
-
-displayKms activitiesList =
-    let
-        totalKms =
-            (List.map .kms activitiesList)
-                |> List.foldl (\x a -> x + a) 0
-    in
-        div []
-            [ text "Kms achieved: "
-            , text (toString totalKms)
-            , displayProgressionBar totalKms
-            ]
 
 
 displayActivities =
@@ -88,6 +31,11 @@ displayActivities =
               , duration = 40
               , kms = 6
               , typeOf = "Walking"
+              }
+            , { date = "03/07/2018"
+              , duration = 70
+              , kms = 12
+              , typeOf = "Running"
               }
             ]
     in
@@ -113,7 +61,6 @@ displayActivities =
                         activitiesList
                     )
                 ]
-            , displayKms activitiesList
             ]
 
 
