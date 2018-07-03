@@ -1,21 +1,83 @@
 module Dashboard exposing (viewDash)
 
-import Html exposing (Html, text, div, img, input, button, form, label)
-import Html.Attributes exposing (src, class, type_, value, name, disabled, checked)
-import Html.Events exposing (onInput, onClick)
+import Messages exposing (..)
+import Model exposing (init, Model)
+import Types exposing (..)
+import Objectives exposing (viewObjectives)
+import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
+import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
 
 
----- VIEW ----
-
-
-displayName : String -> Html msg
-displayName name =
-    div [ class "dashboard" ]
-        [ text ("This is your activity, " ++ name) ]
-
-
+viewDash : Model -> Html Msg
 viewDash model =
-    div [ class "container" ]
+    div [ class "container-dash" ]
         [ text "Dashboard"
-        , displayName model.username
+        , displayTitle model.username
+        , displayActivities
         ]
+
+
+
+-- Title of the page --
+
+
+displayTitle : String -> Html msg
+displayTitle name =
+    div [ class "subtitle-activities" ]
+        [ text ("This is your activity, " ++ name ++ ":") ]
+
+
+
+-- Content --
+
+
+displayActivities : Html msg
+displayActivities =
+    let
+        activitiesList : List Activity
+        activitiesList =
+            [ { date = "28/06/2018"
+              , duration = 97
+              , kms = 15
+              , typeOf = "Running"
+              }
+            , { date = "01/07/2018"
+              , duration = 60
+              , kms = 33
+              , typeOf = "Biking"
+              }
+            , { date = "02/07/2018"
+              , duration = 40
+              , kms = 6
+              , typeOf = "Walking"
+              }
+            , { date = "03/07/2018"
+              , duration = 70
+              , kms = 12
+              , typeOf = "Running"
+              }
+            ]
+    in
+        div []
+            [ table
+                [ class "table-activities" ]
+                [ thead []
+                    [ th [] [ text "Date" ]
+                    , th [] [ text "Duration" ]
+                    , th [] [ text "Distance" ]
+                    , th [] [ text "Activity" ]
+                    ]
+                , tbody []
+                    (List.map
+                        (\activity ->
+                            tr []
+                                [ td [] [ text activity.date ]
+                                , td [] [ text (toString activity.duration ++ " min") ]
+                                , td [] [ text (toString activity.kms ++ " kms") ]
+                                , td [] [ text activity.typeOf ]
+                                ]
+                        )
+                        activitiesList
+                    )
+                ]
+            ]
