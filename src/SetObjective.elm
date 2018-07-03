@@ -7,14 +7,6 @@ import Html.Attributes exposing (src, class, type_, value)
 import Html.Events exposing (onClick)
 
 
-displayFormObj : Model -> Html msg
-displayFormObj model =
-    if model.setObjForm then
-        div [] [ text "yes" ]
-    else
-        div [] [ text "no" ]
-
-
 setObjective : Model -> Html Msg
 setObjective model =
     div [ class "set-objective" ]
@@ -22,3 +14,11 @@ setObjective model =
         , button [ class "btn-set-objective", onClick DisplayForm ] [ text "+" ]
         , displayFormObj model
         ]
+
+
+displayFormObj : Model -> Html msg
+displayFormObj model =
+    if model.setObjForm then
+        div [] [ text "yes" ]
+    else
+        div [] [ text "no" ]

@@ -8,6 +8,29 @@ import Html exposing (Html, text, div, img, input, button, form, label, table, t
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
 
 
+viewDash : Model -> Html Msg
+viewDash model =
+    div [ class "container-dash" ]
+        [ text "Dashboard"
+        , displayTitle model.username
+        , displayActivities
+        ]
+
+
+
+-- Title of the page --
+
+
+displayTitle : String -> Html msg
+displayTitle name =
+    div [ class "subtitle-activities" ]
+        [ text ("This is your activity, " ++ name ++ ":") ]
+
+
+
+-- Content --
+
+
 displayActivities : Html msg
 displayActivities =
     let
@@ -58,18 +81,3 @@ displayActivities =
                     )
                 ]
             ]
-
-
-displayTitle : String -> Html msg
-displayTitle name =
-    div [ class "subtitle-activities" ]
-        [ text ("This is your activity, " ++ name ++ ":") ]
-
-
-viewDash : Model -> Html Msg
-viewDash model =
-    div [ class "container-dash" ]
-        [ text "Dashboard"
-        , displayTitle model.username
-        , displayActivities
-        ]

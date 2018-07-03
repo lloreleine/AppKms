@@ -20,6 +20,10 @@ viewHome model =
         ]
 
 
+
+-- Connection form --
+
+
 displayForm : Model -> Html Msg
 displayForm model =
     if model.connected == False then
@@ -40,6 +44,10 @@ displayForm model =
             ]
     else
         div [] [ text "" ]
+
+
+
+-- Greetings --
 
 
 displayGreetings : String -> Html Msg

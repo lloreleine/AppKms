@@ -12,13 +12,14 @@ import Html.Events exposing (onInput, onClick, onSubmit)
 
 
 ---- VIEW ----
--- Challenges Page --
 
 
-viewChallenges : Model -> Html Msg
-viewChallenges model =
-    div [ class "container-challenges" ]
-        [ text "Challenges Page" ]
+view : Model -> Html Msg
+view model =
+    div [ class "global" ]
+        [ displayMenu model
+        , displayContent model
+        ]
 
 
 
@@ -40,6 +41,10 @@ displayMenu model =
             ]
 
 
+
+-- Content/Pages --
+
+
 displayContent : Model -> Html Msg
 displayContent model =
     if model.home then
@@ -54,12 +59,14 @@ displayContent model =
         div [] [ text "Page 404 - Not Found" ]
 
 
-view : Model -> Html Msg
-view model =
-    div [ class "global" ]
-        [ displayMenu model
-        , displayContent model
-        ]
+
+-- To split -> Challenges Page --
+
+
+viewChallenges : Model -> Html Msg
+viewChallenges model =
+    div [ class "container-challenges" ]
+        [ text "Challenges Page" ]
 
 
 

@@ -1,7 +1,7 @@
 module Update exposing (..)
 
 import Model exposing (Model)
-import Messages exposing (Msg(GoToDashboard, GoToChallenges))
+import Messages exposing (Msg(SaveName, Register, GoToHome, GoToDashboard, GoToObjectives, GoToChallenges, Logout, DisplayForm))
 
 
 ---- UPDATE ----
@@ -10,10 +10,10 @@ import Messages exposing (Msg(GoToDashboard, GoToChallenges))
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Messages.SaveName name ->
+        SaveName name ->
             ( { model | current = name }, Cmd.none )
 
-        Messages.Register ->
+        Register ->
             ( { model
                 | username = model.current
                 , connected = True
@@ -21,7 +21,7 @@ update msg model =
             , Cmd.none
             )
 
-        Messages.GoToHome ->
+        GoToHome ->
             ( { model
                 | home = True
                 , dashboard = False
@@ -31,7 +31,7 @@ update msg model =
             , Cmd.none
             )
 
-        Messages.GoToDashboard ->
+        GoToDashboard ->
             ( { model
                 | dashboard = True
                 , home = False
@@ -41,7 +41,7 @@ update msg model =
             , Cmd.none
             )
 
-        Messages.GoToObjectives ->
+        GoToObjectives ->
             ( { model
                 | objectives = True
                 , home = False
@@ -51,7 +51,7 @@ update msg model =
             , Cmd.none
             )
 
-        Messages.GoToChallenges ->
+        GoToChallenges ->
             ( { model
                 | challenges = True
                 , home = False
@@ -61,7 +61,7 @@ update msg model =
             , Cmd.none
             )
 
-        Messages.Logout ->
+        Logout ->
             ( { model
                 | connected = False
                 , current = ""
@@ -72,5 +72,5 @@ update msg model =
             , Cmd.none
             )
 
-        Messages.DisplayForm ->
+        DisplayForm ->
             ( { model | setObjForm = True }, Cmd.none )
