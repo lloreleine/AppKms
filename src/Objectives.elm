@@ -1,22 +1,17 @@
 module Objectives exposing (viewObjectives)
 
+import Messages exposing (..)
+import Model exposing (init, Model)
+import Types exposing (..)
 import SetObjective exposing (setObjective)
 import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
 
 
-type alias Destination =
-    { name : String
-    , kms : Float
-    , percent : Int
-    , filling : Int
-    }
-
-
 displayProgressionBar : Float -> Html msg
 displayProgressionBar totalKms =
     let
-        destinationsList : List Destination
+        destinationsList : List Types.Destination
         destinationsList =
             [ { name = "Marseille => Aix"
               , kms = 34
@@ -68,7 +63,8 @@ displayProgressionBar totalKms =
             )
 
 
-displayObjectives activitiesList =
+displayObjectives : List Activity -> Model -> Html Msg
+displayObjectives activitiesList model =
     let
         totalKms =
             (List.map .kms activitiesList)
@@ -76,7 +72,8 @@ displayObjectives activitiesList =
     in
         div []
             [ text ("Kms achieved: " ++ toString totalKms)
-            , displayProgressionBar totalKms
+            , displayProgressionBar (toFloat totalKms)
+            , setObjective model
             ]
 
 
@@ -86,6 +83,7 @@ displayTitle name =
         [ text ("Those are your objectives, " ++ name ++ ":") ]
 
 
+viewObjectives : Model -> Html Msg
 viewObjectives model =
     let
         activitiesList =
@@ -114,5 +112,5 @@ viewObjectives model =
         div [ class "container-objectives" ]
             [ text "Objectives Page"
             , displayTitle model.username
-            , displayObjectives activitiesList
+            , displayObjectives activitiesList model
             ]

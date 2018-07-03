@@ -1,18 +1,14 @@
 module Dashboard exposing (viewDash)
 
+import Messages exposing (..)
+import Model exposing (init, Model)
+import Types exposing (..)
 import Objectives exposing (viewObjectives)
 import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
 
 
-type alias Activity =
-    { date : String
-    , duration : Int
-    , kms : Int
-    , typeOf : String
-    }
-
-
+displayActivities : Html msg
 displayActivities =
     let
         activitiesList : List Activity
@@ -70,6 +66,7 @@ displayTitle name =
         [ text ("This is your activity, " ++ name ++ ":") ]
 
 
+viewDash : Model -> Html Msg
 viewDash model =
     div [ class "container-dash" ]
         [ text "Dashboard"

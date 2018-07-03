@@ -1,5 +1,8 @@
 module Main exposing (..)
 
+import Messages exposing (..)
+import Model exposing (init, Model)
+import Update exposing (update)
 import Dashboard exposing (viewDash)
 import Objectives exposing (viewObjectives)
 import Html exposing (Html, text, div, img, input, button, form, label)
@@ -7,120 +10,7 @@ import Html.Attributes exposing (src, class, type_, value, name, disabled, check
 import Html.Events exposing (onInput, onClick, onSubmit)
 
 
----- MODEL ----
-
-
-type alias Model =
-    { connected : Bool
-    , current : String
-    , username : String
-    , home : Bool
-    , dashboard : Bool
-    , objectives : Bool
-    , challenges : Bool
-    }
-
-
-initialModel : Model
-initialModel =
-    { connected = False
-    , current = ""
-    , username = ""
-    , home = True
-    , dashboard = False
-    , objectives = False
-    , challenges = False
-    }
-
-
-init : ( Model, Cmd Msg )
-init =
-    ( initialModel, Cmd.none )
-
-
-
----- UPDATE ----
-
-
-type Msg
-    = SaveName String
-    | Register
-    | GoToHome
-    | GoToDashboard
-    | GoToObjectives
-    | GoToChallenges
-    | Logout
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        SaveName name ->
-            ( { model | current = name }, Cmd.none )
-
-        Register ->
-            ( { model
-                | username = model.current
-                , connected = True
-              }
-            , Cmd.none
-            )
-
-        GoToHome ->
-            ( { model
-                | home = True
-                , dashboard = False
-                , objectives = False
-                , challenges = False
-              }
-            , Cmd.none
-            )
-
-        GoToDashboard ->
-            ( { model
-                | dashboard = True
-                , home = False
-                , objectives = False
-                , challenges = False
-              }
-            , Cmd.none
-            )
-
-        GoToObjectives ->
-            ( { model
-                | objectives = True
-                , home = False
-                , dashboard = False
-                , challenges = False
-              }
-            , Cmd.none
-            )
-
-        GoToChallenges ->
-            ( { model
-                | challenges = True
-                , home = False
-                , dashboard = False
-                , objectives = False
-              }
-            , Cmd.none
-            )
-
-        Logout ->
-            ( { model
-                | connected = False
-                , current = ""
-                , username = ""
-                , home = True
-                , dashboard = False
-              }
-            , Cmd.none
-            )
-
-
-
----- VIEW ----
--- Home Page --
+---- VIEW - HOME PAGE ----
 
 
 viewHome : Model -> Html Msg
