@@ -1,5 +1,6 @@
 module Model exposing (..)
 
+import Types exposing (..)
 import Messages exposing (Msg(GoToDashboard, GoToChallenges))
 
 
@@ -15,6 +16,9 @@ type alias Model =
     , objectives : Bool
     , challenges : Bool
     , setObjForm : Bool
+    , newObjName : String
+    , newObjKms : String
+    , ownObjectives : List Objectives
     }
 
 
@@ -28,6 +32,9 @@ initialModel =
     , objectives = False
     , challenges = False
     , setObjForm = False
+    , newObjName = ""
+    , newObjKms = "0"
+    , ownObjectives = []
     }
 
 

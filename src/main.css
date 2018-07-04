@@ -101,3 +101,12 @@ body {
 .btn-set-objective {
   margin-left: 15px;
 }
+
+.form-setObj {
+  margin-left: 10px;
+}
+
+.input-setObj {
+  margin-left: 10px;
+  width: 100px;
+}

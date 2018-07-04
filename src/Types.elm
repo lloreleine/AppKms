@@ -15,3 +15,9 @@ type alias Destination =
     , percent : Int
     , filling : Int
     }
+
+
+type alias Objectives =
+    { name : String
+    , kms : Int
+    }

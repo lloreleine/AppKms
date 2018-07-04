@@ -10,3 +10,6 @@ type Msg
     | GoToChallenges
     | Logout
     | DisplayForm
+    | SaveNewObjectiveName String
+    | SaveNewObjectiveKms String
+    | AddObjective

@@ -1,7 +1,7 @@
 module Update exposing (..)
 
 import Model exposing (Model)
-import Messages exposing (Msg(SaveName, Register, GoToHome, GoToDashboard, GoToObjectives, GoToChallenges, Logout, DisplayForm))
+import Messages exposing (Msg(SaveName, Register, GoToHome, GoToDashboard, GoToObjectives, GoToChallenges, Logout, DisplayForm, SaveNewObjectiveName, SaveNewObjectiveKms, AddObjective))
 
 
 ---- UPDATE ----
@@ -74,3 +74,12 @@ update msg model =
 
         DisplayForm ->
             ( { model | setObjForm = True }, Cmd.none )
+
+        SaveNewObjectiveName name ->
+            ( { model | newObjName = name }, Cmd.none )
+
+        SaveNewObjectiveKms kms ->
+            ( { model | newObjKms = kms }, Cmd.none )
+
+        AddObjective ->
+            ( model, Cmd.none )
