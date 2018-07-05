@@ -35,7 +35,12 @@ body {
 }
 
 .input {
-  margin-top: 15px;
+  margin-bottom: 8px;
+  margin-top: 2px;
+}
+
+.btn-connection {
+  margin-top: 10px;
 }
 
 .greetings {
@@ -52,7 +57,7 @@ body {
 }
 
 .btn-dash {
-  margin-top: 50px;
+  margin-top: 10px;
   width: 150px;
 }
 
@@ -113,4 +118,11 @@ body {
 
 .btn-delete-own-objective {
   margin-left: 50px;
+}
+
+/* Challenges Page */
+
+.subtitle-challenges {
+  margin-top: 35px;
+  margin-bottom: 20px;
 }

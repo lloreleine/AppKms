@@ -12,7 +12,7 @@ viewObjectives : Model -> Html Msg
 viewObjectives model =
     div [ class "container-objectives" ]
         [ text "Objectives Page"
-        , displayTitle model.username
+        , displayTitle model.user.name
         , displayObjectives model
         ]
 

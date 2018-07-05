@@ -1,25 +1,46 @@
 module Update exposing (..)
 
 import Model exposing (Model)
-import Messages exposing (Msg(SaveName, Register, GoToHome, GoToDashboard, GoToObjectives, GoToChallenges, Logout, DisplayForm, SaveNewObjectiveName, SaveNewObjectiveKms, AddObjective, DeleteOwnObjective))
+import Messages exposing (..)
+import Types exposing (..)
 
 
 ---- UPDATE ----
 
 
+updateUser : MsgUser -> Model -> User -> User
+updateUser msg model user =
+    case msg of
+        Register ->
+            { user
+                | name = model.currentName
+                , password = model.currentPassword
+                , status = "lambda"
+                , connected = True
+            }
+
+        Logout ->
+            { user
+                | name = ""
+                , password = ""
+                , status = ""
+                , connected = False
+            }
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        SaveName name ->
-            ( { model | current = name }, Cmd.none )
-
-        Register ->
-            ( { model
-                | username = model.current
-                , connected = True
-              }
+        MsgUserWrapper msgUser ->
+            ( { model | user = updateUser msgUser model model.user }
             , Cmd.none
             )
+
+        SaveName name ->
+            ( { model | currentName = name }, Cmd.none )
+
+        SavePassword password ->
+            ( { model | currentPassword = password }, Cmd.none )
 
         GoToHome ->
             ( { model
@@ -57,17 +78,6 @@ update msg model =
                 , home = False
                 , dashboard = False
                 , objectives = False
-              }
-            , Cmd.none
-            )
-
-        Logout ->
-            ( { model
-                | connected = False
-                , current = ""
-                , username = ""
-                , home = True
-                , dashboard = False
               }
             , Cmd.none
             )

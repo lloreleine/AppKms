@@ -2,7 +2,6 @@ module Dashboard exposing (viewDash)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
-import Types exposing (..)
 import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
 
@@ -11,7 +10,7 @@ viewDash : Model -> Html Msg
 viewDash model =
     div [ class "container-dash" ]
         [ text "Dashboard"
-        , displayTitle model.username
+        , displayTitle model.user.name
         , displayActivities model
         ]
 

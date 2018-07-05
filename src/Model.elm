@@ -8,9 +8,9 @@ import Messages exposing (Msg(GoToDashboard, GoToChallenges))
 
 
 type alias Model =
-    { connected : Bool
-    , current : String
-    , username : String
+    { user : User
+    , currentName : String
+    , currentPassword : String
     , home : Bool
     , dashboard : Bool
     , objectives : Bool
@@ -26,9 +26,14 @@ type alias Model =
 
 initialModel : Model
 initialModel =
-    { connected = False
-    , current = ""
-    , username = ""
+    { user =
+        { name = ""
+        , password = ""
+        , status = "String"
+        , connected = False
+        }
+    , currentName = ""
+    , currentPassword = ""
     , home = True
     , dashboard = False
     , objectives = False
