@@ -48,7 +48,7 @@ displayForm model =
                 , onClick (MsgUserWrapper Register)
                 , class "btn-connection"
                 ]
-                [ text "Connexion" ]
+                [ text "Connect" ]
             ]
     else
         div [] [ text "" ]
