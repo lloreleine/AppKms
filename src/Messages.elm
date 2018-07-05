@@ -1,5 +1,8 @@
 module Messages exposing (..)
 
+import Types exposing (..)
+import Http
+
 
 type MsgUser
     = Register
@@ -19,3 +22,5 @@ type Msg
     | SaveNewObjectiveKms String
     | AddObjective
     | DeleteOwnObjective String
+    | LoadAPI
+    | NewGif (Result Http.Error String)

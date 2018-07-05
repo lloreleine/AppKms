@@ -3,6 +3,9 @@ module Update exposing (..)
 import Model exposing (Model)
 import Messages exposing (..)
 import Types exposing (..)
+import Http
+import Json.Decode as Decode exposing (string)
+import Json.Decode.Pipeline exposing (decode, hardcoded, required)
 
 
 ---- UPDATE ----
@@ -118,3 +121,27 @@ update msg model =
                         |> Debug.log "clean destinations"
             in
                 ( { model | destinations = cleanListDestinations }, Cmd.none )
+
+        LoadAPI ->
+            ( model, getRandomGif )
+
+        NewGif (Ok newUrl) ->
+            ( { model | gifUrl = newUrl }, Cmd.none )
+
+        NewGif (Err _) ->
+            ( model, Cmd.none )
+
+
+getRandomGif : Cmd Msg
+getRandomGif =
+    let
+        url =
+            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats"
+    in
+        Http.get url gifDecoder
+            |> Http.send NewGif
+
+
+gifDecoder : Decode.Decoder String
+gifDecoder =
+    Decode.at [ "data", "image_url" ] Decode.string

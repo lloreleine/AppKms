@@ -21,6 +21,7 @@ type alias Model =
     , setObjForm : Bool
     , newObjName : String
     , newObjKms : String
+    , gifUrl : String
     }
 
 
@@ -90,6 +91,7 @@ initialModel =
     , setObjForm = False
     , newObjName = ""
     , newObjKms = ""
+    , gifUrl = ""
     }
 
 

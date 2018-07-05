@@ -1,6 +1,10 @@
 module Types exposing (..)
 
 
+type alias Feed =
+    { imgUrl : String }
+
+
 type alias User =
     { name : String
     , password : String
