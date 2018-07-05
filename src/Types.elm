@@ -14,10 +14,5 @@ type alias Destination =
     , kms : Float
     , percent : Int
     , filling : Int
-    }
-
-
-type alias Objectives =
-    { name : String
-    , kms : Int
+    , own : Bool
     }

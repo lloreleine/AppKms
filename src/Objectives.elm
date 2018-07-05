@@ -2,43 +2,19 @@ module Objectives exposing (viewObjectives)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
-import Types exposing (..)
 import SetObjective exposing (setObjective)
 import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
+import Html.Events exposing (onClick)
 
 
 viewObjectives : Model -> Html Msg
 viewObjectives model =
-    let
-        activitiesList =
-            [ { date = "28/06/2018"
-              , duration = 97
-              , kms = 15
-              , typeOf = "Running"
-              }
-            , { date = "01/07/2018"
-              , duration = 60
-              , kms = 33
-              , typeOf = "Biking"
-              }
-            , { date = "02/07/2018"
-              , duration = 40
-              , kms = 6
-              , typeOf = "Walking"
-              }
-            , { date = "03/07/2018"
-              , duration = 70
-              , kms = 12
-              , typeOf = "Running"
-              }
-            ]
-    in
-        div [ class "container-objectives" ]
-            [ text "Objectives Page"
-            , displayTitle model.username
-            , displayObjectives activitiesList model
-            ]
+    div [ class "container-objectives" ]
+        [ text "Objectives Page"
+        , displayTitle model.username
+        , displayObjectives model
+        ]
 
 
 
@@ -55,70 +31,54 @@ displayTitle name =
 -- Content --
 
 
-displayObjectives : List Activity -> Model -> Html Msg
-displayObjectives activitiesList model =
+displayObjectives : Model -> Html Msg
+displayObjectives model =
     let
+        -- unused variable but keep it for the calculation in DB --
         totalKms =
-            (List.map .kms activitiesList)
+            (List.map .kms model.activities)
                 |> List.foldl (\x a -> x + a) 0
     in
         div []
-            [ text ("Kms achieved: " ++ toString totalKms)
-            , displayProgressionBar (toFloat totalKms)
+            [ text ("Kms achieved: " ++ toString model.kmsAchieved)
+            , displayProgressionBar model
             , setObjective model
             ]
 
 
-displayProgressionBar : Float -> Html msg
-displayProgressionBar totalKms =
-    let
-        destinationsList : List Types.Destination
-        destinationsList =
-            [ { name = "Marseille => Aix"
-              , kms = 34
-              , percent = round (totalKms * 100 / 34)
-              , filling = round (totalKms * 300 / 34)
-              }
-            , { name = "Lille => Hardelot"
-              , kms = 115
-              , percent = round (totalKms * 100 / 115)
-              , filling = round (totalKms * 300 / 115)
-              }
-            , { name = "Paris => Lille"
-              , kms = 225
-              , percent = round (totalKms * 100 / 225)
-              , filling = round (totalKms * 300 / 225)
-              }
-            , { name = "Paris => Barcelone"
-              , kms = 1069
-              , percent = round (totalKms * 100 / 1069)
-              , filling = round (totalKms * 300 / 1069)
-              }
-            ]
-    in
-        div []
-            (List.map
-                (\destination ->
-                    div [ class "container-prog-bar" ]
+displayProgressionBar : Model -> Html Msg
+displayProgressionBar model =
+    div []
+        (List.map
+            (\destination ->
+                div [ class "container-prog-bar" ]
+                    [ div
+                        [ class "prog-bar-global" ]
                         [ div
-                            [ class "prog-bar-global" ]
-                            [ div
-                                [ style
-                                    [ ( "background-color", "lightsalmon" )
-                                    , if destination.filling > 300 then
-                                        ( "width", "300px" )
-                                      else
-                                        ( "width", (toString (destination.filling)) ++ "px" )
-                                    ]
-                                ]
-                                [ if destination.percent > 100 then
-                                    text "100%"
+                            [ style
+                                [ ( "background-color", "lightsalmon" )
+                                , if destination.filling > 300 then
+                                    ( "width", "300px" )
                                   else
-                                    text (toString (destination.percent) ++ "%")
+                                    ( "width", (toString (destination.filling)) ++ "px" )
                                 ]
                             ]
-                        , div [ class "prog-bar-annotations" ] [ text ("/ " ++ (toString destination.kms) ++ " kms - " ++ destination.name) ]
+                            [ if destination.percent > 100 then
+                                text "100%"
+                              else
+                                text (toString (destination.percent) ++ "%")
+                            ]
                         ]
-                )
-                destinationsList
+                    , div [ class "prog-bar-annotations" ] [ text ("/ " ++ (toString destination.kms) ++ " kms - " ++ destination.name) ]
+                    , if destination.own then
+                        button
+                            [ class "btn-delete-own-objective"
+                            , onClick (DeleteOwnObjective destination.name)
+                            ]
+                            [ text "X" ]
+                      else
+                        div [] []
+                    ]
             )
+            model.destinations
+        )

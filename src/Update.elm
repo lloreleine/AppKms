@@ -1,7 +1,7 @@
 module Update exposing (..)
 
 import Model exposing (Model)
-import Messages exposing (Msg(SaveName, Register, GoToHome, GoToDashboard, GoToObjectives, GoToChallenges, Logout, DisplayForm, SaveNewObjectiveName, SaveNewObjectiveKms, AddObjective))
+import Messages exposing (Msg(SaveName, Register, GoToHome, GoToDashboard, GoToObjectives, GoToChallenges, Logout, DisplayForm, SaveNewObjectiveName, SaveNewObjectiveKms, AddObjective, DeleteOwnObjective))
 
 
 ---- UPDATE ----
@@ -82,4 +82,29 @@ update msg model =
             ( { model | newObjKms = kms }, Cmd.none )
 
         AddObjective ->
-            ( model, Cmd.none )
+            let
+                newKms =
+                    Result.withDefault 0 (String.toFloat model.newObjKms)
+            in
+                ( { model
+                    | destinations =
+                        { name = model.newObjName
+                        , kms = newKms
+                        , percent = round (model.kmsAchieved * 100 / newKms)
+                        , filling = round (model.kmsAchieved * 300 / newKms)
+                        , own = True
+                        }
+                            :: model.destinations
+                    , newObjName = ""
+                    , newObjKms = ""
+                  }
+                , Cmd.none
+                )
+
+        DeleteOwnObjective destinationName ->
+            let
+                cleanListDestinations =
+                    List.filter (\dest -> dest.name /= destinationName) model.destinations
+                        |> Debug.log "clean destinations"
+            in
+                ( { model | destinations = cleanListDestinations }, Cmd.none )

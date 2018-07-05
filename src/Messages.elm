@@ -13,3 +13,4 @@ type Msg
     | SaveNewObjectiveName String
     | SaveNewObjectiveKms String
     | AddObjective
+    | DeleteOwnObjective String

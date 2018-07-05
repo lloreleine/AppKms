@@ -19,8 +19,8 @@ setObjective model =
 displayFormObj : Model -> Html Msg
 displayFormObj model =
     if model.setObjForm then
-        form
-            [ class "form-setObj", onSubmit AddObjective ]
+        div
+            [ class "form-setObj" ]
             [ div []
                 [ text "Please, enter the name of your objective:"
                 , input
@@ -35,6 +35,7 @@ displayFormObj model =
                 [ text "Please, enter the number of kms:"
                 , input
                     [ type_ "text"
+                    , value model.newObjKms
                     , onInput SaveNewObjectiveKms
                     , class "input-setObj"
                     ]
@@ -43,6 +44,7 @@ displayFormObj model =
             , div []
                 [ button
                     [ disabled (String.isEmpty model.newObjName)
+                    , type_ "submit"
                     , onClick AddObjective
                     ]
                     [ text "Add Objective" ]

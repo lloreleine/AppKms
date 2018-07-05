@@ -12,7 +12,7 @@ viewDash model =
     div [ class "container-dash" ]
         [ text "Dashboard"
         , displayTitle model.username
-        , displayActivities
+        , displayActivities model
         ]
 
 
@@ -30,53 +30,28 @@ displayTitle name =
 -- Content --
 
 
-displayActivities : Html msg
-displayActivities =
-    let
-        activitiesList : List Activity
-        activitiesList =
-            [ { date = "28/06/2018"
-              , duration = 97
-              , kms = 15
-              , typeOf = "Running"
-              }
-            , { date = "01/07/2018"
-              , duration = 60
-              , kms = 33
-              , typeOf = "Biking"
-              }
-            , { date = "02/07/2018"
-              , duration = 40
-              , kms = 6
-              , typeOf = "Walking"
-              }
-            , { date = "03/07/2018"
-              , duration = 70
-              , kms = 12
-              , typeOf = "Running"
-              }
-            ]
-    in
-        div []
-            [ table
-                [ class "table-activities" ]
-                [ thead []
-                    [ th [] [ text "Date" ]
-                    , th [] [ text "Duration" ]
-                    , th [] [ text "Distance" ]
-                    , th [] [ text "Activity" ]
-                    ]
-                , tbody []
-                    (List.map
-                        (\activity ->
-                            tr []
-                                [ td [] [ text activity.date ]
-                                , td [] [ text (toString activity.duration ++ " min") ]
-                                , td [] [ text (toString activity.kms ++ " kms") ]
-                                , td [] [ text activity.typeOf ]
-                                ]
-                        )
-                        activitiesList
-                    )
+displayActivities : Model -> Html msg
+displayActivities model =
+    div []
+        [ table
+            [ class "table-activities" ]
+            [ thead []
+                [ th [] [ text "Date" ]
+                , th [] [ text "Duration" ]
+                , th [] [ text "Distance" ]
+                , th [] [ text "Activity" ]
                 ]
+            , tbody []
+                (List.map
+                    (\activity ->
+                        tr []
+                            [ td [] [ text activity.date ]
+                            , td [] [ text (toString activity.duration ++ " min") ]
+                            , td [] [ text (toString activity.kms ++ " kms") ]
+                            , td [] [ text activity.typeOf ]
+                            ]
+                    )
+                    model.activities
+                )
             ]
+        ]

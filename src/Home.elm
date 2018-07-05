@@ -63,4 +63,5 @@ displayGreetings name =
                 [ text greetings
                 , text "What do you want to do?"
                 , button [ class "btn-dash", onClick GoToDashboard ] [ text "Go to my dashboard" ]
+                , button [ class "btn-dash", onClick GoToObjectives ] [ text "See my objectives" ]
                 ]
