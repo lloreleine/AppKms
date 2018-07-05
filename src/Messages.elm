@@ -1,14 +1,19 @@
 module Messages exposing (..)
 
 
+type MsgUser
+    = Register
+    | Logout
+
+
 type Msg
-    = SaveName String
-    | Register
+    = MsgUserWrapper MsgUser
+    | SaveName String
+    | SavePassword String
     | GoToHome
     | GoToDashboard
     | GoToObjectives
     | GoToChallenges
-    | Logout
     | DisplayForm
     | SaveNewObjectiveName String
     | SaveNewObjectiveKms String

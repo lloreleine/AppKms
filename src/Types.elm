@@ -1,6 +1,14 @@
 module Types exposing (..)
 
 
+type alias User =
+    { name : String
+    , password : String
+    , status : String
+    , connected : Bool
+    }
+
+
 type alias Activity =
     { date : String
     , duration : Int

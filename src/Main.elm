@@ -6,6 +6,7 @@ import Update exposing (update)
 import Home exposing (viewHome)
 import Dashboard exposing (viewDash)
 import Objectives exposing (viewObjectives)
+import Challenges exposing (viewChallenges)
 import Html exposing (Html, text, div, img, input, button, form, label)
 import Html.Attributes exposing (src, class, type_, value, name, disabled, checked)
 import Html.Events exposing (onInput, onClick, onSubmit)
@@ -28,17 +29,17 @@ view model =
 
 displayMenu : Model -> Html Msg
 displayMenu model =
-    if (String.isEmpty model.username) then
-        div [] []
-    else
+    if (model.user.connected) then
         div [ class "menu" ]
             [ text "Menu"
             , button [ onClick GoToHome ] [ text "Home" ]
             , button [ onClick GoToDashboard ] [ text "Dashboard" ]
             , button [ onClick GoToObjectives ] [ text "Objectives" ]
             , button [ onClick GoToChallenges ] [ text "Challenges" ]
-            , button [ onClick Logout ] [ text "Logout" ]
+            , button [ onClick (MsgUserWrapper Logout) ] [ text "Logout" ]
             ]
+    else
+        div [] []
 
 
 
@@ -57,16 +58,6 @@ displayContent model =
         viewChallenges model
     else
         div [] [ text "Page 404 - Not Found" ]
-
-
-
--- To split -> Challenges Page --
-
-
-viewChallenges : Model -> Html Msg
-viewChallenges model =
-    div [ class "container-challenges" ]
-        [ text "Challenges Page" ]
 
 
 
