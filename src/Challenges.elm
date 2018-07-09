@@ -13,7 +13,9 @@ viewChallenges model =
         [ text "Challenges Page"
         , displayTitle model.user.name
         , img [ src model.gifUrl ] []
-        , button [ onClick LoadAPI ] [ text "load API" ]
+        , button [ onClick LoadAPIGif ] [ text "load Random Gif" ]
+        , displayWeather model
+        , button [ onClick LoadAPIWeather ] [ text "load Weather" ]
         ]
 
 
@@ -29,3 +31,17 @@ displayTitle name =
 
 
 -- Content --
+
+
+displayWeather : Model -> Html msg
+displayWeather model =
+    div []
+        [ div []
+            [ text "Temperature of the day: "
+            , text (toString model.weatherTemp)
+            ]
+        , div []
+            [ text "Weather: "
+            , text model.weather
+            ]
+        ]

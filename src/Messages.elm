@@ -1,6 +1,5 @@
 module Messages exposing (..)
 
-import Types exposing (..)
 import Http
 
 
@@ -22,5 +21,11 @@ type Msg
     | SaveNewObjectiveKms String
     | AddObjective
     | DeleteOwnObjective String
-    | LoadAPI
+    | LoadAPIGif
     | NewGif (Result Http.Error String)
+    | LoadAPIWeather
+    | WeatherTemp (Result Http.Error Float)
+
+
+
+-- | Weather (Result Http.Error List)

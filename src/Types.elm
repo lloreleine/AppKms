@@ -5,6 +5,14 @@ type alias Feed =
     { imgUrl : String }
 
 
+type alias WeatherDesc =
+    { id : Int
+    , main : String
+    , description : String
+    , icon : String
+    }
+
+
 type alias User =
     { name : String
     , password : String
