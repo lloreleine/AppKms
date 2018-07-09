@@ -1,10 +1,6 @@
 module Types exposing (..)
 
 
-type alias Feed =
-    { imgUrl : String }
-
-
 type alias WeatherDesc =
     { id : Int
     , main : String
