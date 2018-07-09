@@ -138,13 +138,11 @@ update msg model =
         WeatherTemp (Err _) ->
             ( model, Cmd.none )
 
+        Weather (Ok newWeather) ->
+            ( { model | weather = newWeather }, Cmd.none )
 
-
--- Weather (Ok newWeather) ->
---     ( { model | weather = newWeather }, Cmd.none )
---
--- Weather (Err _) ->
---     ( model, Cmd.none )
+        Weather (Err _) ->
+            ( model, Cmd.none )
 
 
 fetchGif : Cmd Msg
@@ -183,19 +181,18 @@ weatherTempDecoder =
     Decode.at [ "main", "temp" ] Decode.float
 
 
+fetchWeather : Cmd Msg
+fetchWeather =
+    Http.get urlOpenWeather weatherDecoder
+        |> Debug.log "weather "
+        |> Http.send Weather
 
--- fetchWeather : Cmd Msg
--- fetchWeather =
---     Http.get urlOpenWeather weatherDecoder
---         |> Debug.log "weather "
---         |> Http.send Weather
---
---
--- weatherDecoder : Decode.Decoder String
--- weatherDecoder =
---     Decode.at [ "weather" ] mainWeatherDecoder
---
---
--- mainWeatherDecoder : Decode.Decoder String
--- mainWeatherDecoder =
---     Decode.field "main" Decode.string
+
+weatherDecoder : Decode.Decoder String
+weatherDecoder =
+    Decode.at [ "weather" ] mainWeatherDecoder
+
+
+mainWeatherDecoder : Decode.Decoder String
+mainWeatherDecoder =
+    Decode.field "main" Decode.string

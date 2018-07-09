@@ -25,7 +25,4 @@ type Msg
     | NewGif (Result Http.Error String)
     | LoadAPIWeather
     | WeatherTemp (Result Http.Error Float)
-
-
-
--- | Weather (Result Http.Error List)
+    | Weather (Result Http.Error String)
