@@ -11,13 +11,15 @@ type alias Model =
     { user : User
     , currentName : String
     , currentPassword : String
-    , home : Bool
-    , dashboard : Bool
-    , objectives : Bool
-    , challenges : Bool
+    , homePage : Bool
+    , dashboardPage : Bool
+    , objectivesPage : Bool
+    , challengesPage : Bool
+    , testAPIPage : Bool
     , activities : List Activity
     , destinations : List Destination
     , kmsAchieved : Float
+    , challenges : List Challenge
     , setObjForm : Bool
     , newObjName : String
     , newObjKms : String
@@ -38,10 +40,11 @@ initialModel =
         }
     , currentName = ""
     , currentPassword = ""
-    , home = True
-    , dashboard = False
-    , objectives = False
-    , challenges = False
+    , homePage = True
+    , dashboardPage = False
+    , objectivesPage = False
+    , challengesPage = False
+    , testAPIPage = False
     , activities =
         [ { date = "28/06/2018"
           , duration = 97
@@ -91,6 +94,32 @@ initialModel =
           }
         ]
     , kmsAchieved = 66.0
+    , challenges =
+        [ { name = "Travel from Paris to Brussels"
+          , kms = 312.0
+          , participants =
+                [ { name = "Guillaume"
+                  , kms = 56.7
+                  }
+                ]
+          , own = False
+          }
+        , { name = "Travel from Lille to London"
+          , kms = 284.0
+          , participants =
+                [ { name = "Guillaume"
+                  , kms = 56.7
+                  }
+                , { name = "Charles"
+                  , kms = 134.5
+                  }
+                , { name = "Loréleine"
+                  , kms = 67.8
+                  }
+                ]
+          , own = False
+          }
+        ]
     , setObjForm = False
     , newObjName = ""
     , newObjKms = ""

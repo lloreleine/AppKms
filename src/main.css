@@ -126,3 +126,50 @@ body {
   margin-top: 35px;
   margin-bottom: 20px;
 }
+
+.cards {
+  display: flex;
+}
+
+.card-challenge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 12px;
+  padding: 0 15px 10px 15px;
+  box-shadow: 0 2px 6px grey;
+}
+
+.card-challenge h5 {
+  text-decoration: underline;
+}
+
+.btn-add-challenge {
+  margin-top: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: radial-gradient(white, #CECECE);
+}
+
+.list-participants div i {
+  margin-right: 10px;
+}
+
+.list-participants div:first-child i {
+    color: gold;
+}
+
+.list-participants div:nth-child(2) i {
+    color: silver;
+}
+
+.list-participants div:nth-child(3) i {
+    color: goldenrod;
+}
+
+/* API Test Page */
+.content-API {
+  margin-top: 50px;
+  text-align: center;
+}

@@ -46,40 +46,55 @@ update msg model =
 
         GoToHome ->
             ( { model
-                | home = True
-                , dashboard = False
-                , objectives = False
-                , challenges = False
+                | homePage = True
+                , dashboardPage = False
+                , objectivesPage = False
+                , challengesPage = False
+                , testAPIPage = False
               }
             , Cmd.none
             )
 
         GoToDashboard ->
             ( { model
-                | dashboard = True
-                , home = False
-                , objectives = False
-                , challenges = False
+                | dashboardPage = True
+                , homePage = False
+                , objectivesPage = False
+                , challengesPage = False
+                , testAPIPage = False
               }
             , Cmd.none
             )
 
         GoToObjectives ->
             ( { model
-                | objectives = True
-                , home = False
-                , dashboard = False
-                , challenges = False
+                | objectivesPage = True
+                , homePage = False
+                , dashboardPage = False
+                , challengesPage = False
+                , testAPIPage = False
               }
             , Cmd.none
             )
 
         GoToChallenges ->
             ( { model
-                | challenges = True
-                , home = False
-                , dashboard = False
-                , objectives = False
+                | challengesPage = True
+                , homePage = False
+                , dashboardPage = False
+                , objectivesPage = False
+                , testAPIPage = False
+              }
+            , Cmd.none
+            )
+
+        GoToTestAPI ->
+            ( { model
+                | testAPIPage = True
+                , homePage = False
+                , dashboardPage = False
+                , objectivesPage = False
+                , challengesPage = False
               }
             , Cmd.none
             )

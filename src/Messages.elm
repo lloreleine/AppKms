@@ -16,6 +16,7 @@ type Msg
     | GoToDashboard
     | GoToObjectives
     | GoToChallenges
+    | GoToTestAPI
     | DisplayForm
     | SaveNewObjectiveName String
     | SaveNewObjectiveKms String
