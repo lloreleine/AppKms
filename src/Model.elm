@@ -21,6 +21,10 @@ type alias Model =
     , setObjForm : Bool
     , newObjName : String
     , newObjKms : String
+    , gifUrl : String
+    , weather : String
+    , weatherTemp : Float
+    , error : String
     }
 
 
@@ -90,6 +94,10 @@ initialModel =
     , setObjForm = False
     , newObjName = ""
     , newObjKms = ""
+    , gifUrl = ""
+    , weather = ""
+    , weatherTemp = 0.0
+    , error = ""
     }
 
 
