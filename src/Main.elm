@@ -7,9 +7,9 @@ import Home exposing (viewHome)
 import Dashboard exposing (viewDash)
 import Objectives exposing (viewObjectives)
 import Challenges exposing (viewChallenges)
-import Html exposing (Html, text, div, img, input, button, form, label)
-import Html.Attributes exposing (src, class, type_, value, name, disabled, checked)
-import Html.Events exposing (onInput, onClick, onSubmit)
+import Html exposing (Html, text, div, button)
+import Html.Attributes exposing (class)
+import Html.Events exposing (onClick)
 
 
 ---- VIEW ----

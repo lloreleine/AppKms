@@ -1,7 +1,7 @@
 module Model exposing (..)
 
 import Types exposing (..)
-import Messages exposing (Msg(GoToDashboard, GoToChallenges))
+import Messages exposing (Msg)
 
 
 ---- MODEL ----

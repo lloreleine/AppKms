@@ -2,8 +2,8 @@ module Dashboard exposing (viewDash)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
-import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
-import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
+import Html exposing (Html, text, div, table, thead, th, tbody, td, tr)
+import Html.Attributes exposing (class)
 
 
 viewDash : Model -> Html Msg
