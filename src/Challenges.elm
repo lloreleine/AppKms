@@ -14,7 +14,7 @@ viewChallenges model =
         [ text "Challenges Page"
         , displayTitle model.user.name
         , displayChallenges model
-        , button [ class "btn-add-challenge" ] [ text " + " ]
+        , button [ class "btn-add-challenge", onClick AddChallenge ] [ text " + " ]
         ]
 
 

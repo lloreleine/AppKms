@@ -159,6 +159,28 @@ update msg model =
         Weather (Err _) ->
             ( model, Cmd.none )
 
+        AddChallenge ->
+            let
+                newChallengesList =
+                    List.append model.challenges
+                        [ { name = "test"
+                          , kms = 0.0
+                          , participants =
+                                [ { name = "Me"
+                                  , kms = 0.0
+                                  }
+                                ]
+                          , own = True
+                          }
+                        ]
+            in
+                ( { model
+                    | challenges =
+                        newChallengesList
+                  }
+                , Cmd.none
+                )
+
 
 fetchGif : Cmd Msg
 fetchGif =

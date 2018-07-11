@@ -27,3 +27,4 @@ type Msg
     | LoadAPIWeather
     | WeatherTemp (Result Http.Error Float)
     | Weather (Result Http.Error String)
+    | AddChallenge
