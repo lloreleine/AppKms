@@ -3,8 +3,8 @@ module Objectives exposing (viewObjectives)
 import Messages exposing (..)
 import Model exposing (init, Model)
 import SetObjective exposing (setObjective)
-import Html exposing (Html, text, div, img, input, button, form, label, table, thead, th, tbody, td, tr, ul, li)
-import Html.Attributes exposing (src, class, type_, value, name, disabled, checked, style)
+import Html exposing (Html, text, div, button)
+import Html.Attributes exposing (class, style)
 import Html.Events exposing (onClick)
 
 

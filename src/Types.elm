@@ -1,14 +1,6 @@
 module Types exposing (..)
 
 
-type alias WeatherDesc =
-    { id : Int
-    , main : String
-    , description : String
-    , icon : String
-    }
-
-
 type alias User =
     { name : String
     , password : String

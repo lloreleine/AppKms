@@ -2,8 +2,8 @@ module Home exposing (viewHome)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
-import Html exposing (Html, text, div, img, input, button, form, label)
-import Html.Attributes exposing (src, class, type_, value, name, disabled, checked)
+import Html exposing (Html, text, div, input, button, form)
+import Html.Attributes exposing (class, type_, value, name, disabled)
 import Html.Events exposing (onInput, onClick, onSubmit)
 
 

@@ -2,8 +2,8 @@ module Challenges exposing (viewChallenges)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
-import Html exposing (Html, text, div, img, input, button, form, label)
-import Html.Attributes exposing (src, class, type_, value, name)
+import Html exposing (Html, text, div, img, button)
+import Html.Attributes exposing (src, class)
 import Html.Events exposing (onClick)
 
 
