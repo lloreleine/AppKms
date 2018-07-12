@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
+  margin: 15px 20px;
   font-size: 18px;
 }
 
@@ -125,4 +125,135 @@ body {
 .subtitle-challenges {
   margin-top: 35px;
   margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-challenge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 290px;
+  max-height: 223px;
+  overflow: hidden;
+  text-align: center;
+  margin: 8px 15px 8px 0;
+  padding: 0 15px 10px 15px;
+  box-shadow: 0 2px 6px grey;
+}
+
+.card-challenge:hover {
+  background: radial-gradient(white, #CECECE);
+  cursor: pointer;
+}
+
+.card-challenge h5 {
+  text-decoration: underline;
+}
+
+.participant-challenge {
+  margin-bottom: 5px;
+}
+
+.list-participants div i {
+  margin-right: 10px;
+}
+
+.list-participants div:first-child i {
+    color: gold;
+}
+
+.list-participants div:nth-child(2) i {
+    color: silver;
+}
+
+.list-participants div:nth-child(3) i {
+    color: goldenrod;
+}
+
+.btn-add-challenge {
+  margin-top: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: radial-gradient(white, #CECECE);
+}
+
+.btn-delete-own-challenge {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 140px;
+}
+
+/* Set Form Challenge */
+
+.form-setChallenge {
+  margin-top: 25px;
+}
+
+.form-setChallenge > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-setChallenge {
+  margin: 8px 0;
+}
+
+.selection-newChallenge-participants {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.selection-newChallenge-participants span {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.list-select-from-community {
+  box-shadow: 2px 2px 4px darkgrey;
+  width: 200px;
+  height: 160px;
+  font-style: italic;
+  overflow: scroll;
+}
+
+.list-selected-participants {
+  box-shadow: 2px 2px 4px darkgrey;
+  width: 200px;
+  height: 160px;
+  overflow: scroll;
+}
+
+.arrow-selection-participants {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  height: 160px;
+  width: 20px;
+  margin: 0 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 2px darkgrey;
+}
+
+.challenge-participant:hover {
+  background: linear-gradient(to right, #CECECE, white);
+}
+
+/* API Test Page */
+.content-API {
+  margin-top: 50px;
+  text-align: center;
 }

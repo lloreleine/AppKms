@@ -11,20 +11,27 @@ type alias Model =
     { user : User
     , currentName : String
     , currentPassword : String
-    , home : Bool
-    , dashboard : Bool
-    , objectives : Bool
-    , challenges : Bool
+    , homePage : Bool
+    , dashboardPage : Bool
+    , objectivesPage : Bool
+    , challengesPage : Bool
+    , testAPIPage : Bool
     , activities : List Activity
     , destinations : List Destination
     , kmsAchieved : Float
+    , challenges : List Challenge
+    , setChallengeForm : Bool
+    , newChallengeName : String
+    , newChallengeKms : Float
+    , newChallengeParticipants : List Participant
     , setObjForm : Bool
     , newObjName : String
-    , newObjKms : String
+    , newObjKms : Float
     , gifUrl : String
     , weather : String
     , weatherTemp : Float
     , error : String
+    , community : List Participant
     }
 
 
@@ -33,15 +40,16 @@ initialModel =
     { user =
         { name = ""
         , password = ""
-        , status = "String"
+        , status = "User"
         , connected = False
         }
     , currentName = ""
     , currentPassword = ""
-    , home = True
-    , dashboard = False
-    , objectives = False
-    , challenges = False
+    , homePage = True
+    , dashboardPage = False
+    , objectivesPage = False
+    , challengesPage = False
+    , testAPIPage = False
     , activities =
         [ { date = "28/06/2018"
           , duration = 97
@@ -91,13 +99,87 @@ initialModel =
           }
         ]
     , kmsAchieved = 66.0
+    , challenges =
+        [ { name = "Travel from Paris to Brussels"
+          , kms = 312.0
+          , participants =
+                [ { name = "Guillaume"
+                  , kms = 56.7
+                  }
+                ]
+          , own = False
+          }
+        , { name = "Travel from Lille to London"
+          , kms = 284.0
+          , participants =
+                [ { name = "Guillaume"
+                  , kms = 56.7
+                  }
+                , { name = "Charles"
+                  , kms = 134.5
+                  }
+                , { name = "Loréleine"
+                  , kms = 67.8
+                  }
+                , { name = "Vincent"
+                  , kms = 16.3
+                  }
+                , { name = "Kévin"
+                  , kms = 78.5
+                  }
+                , { name = "Virginie"
+                  , kms = 127.9
+                  }
+                ]
+          , own = False
+          }
+        ]
+    , setChallengeForm = False
+    , newChallengeName = ""
+    , newChallengeKms = 0.0
+    , newChallengeParticipants = []
     , setObjForm = False
     , newObjName = ""
-    , newObjKms = ""
+    , newObjKms = 0.0
     , gifUrl = ""
     , weather = ""
     , weatherTemp = 0.0
     , error = ""
+    , community =
+        [ { name = "Guillaume"
+          , kms = 56.7
+          }
+        , { name = "Charles"
+          , kms = 134.5
+          }
+        , { name = "Loréleine"
+          , kms = 67.8
+          }
+        , { name = "Vincent"
+          , kms = 16.3
+          }
+        , { name = "Kévin"
+          , kms = 78.5
+          }
+        , { name = "Virginie"
+          , kms = 127.9
+          }
+        , { name = "Arnaud"
+          , kms = 78.4
+          }
+        , { name = "Thomas"
+          , kms = 23.2
+          }
+        , { name = "Dominique"
+          , kms = 5.3
+          }
+        , { name = "Sandie"
+          , kms = 3.8
+          }
+        , { name = "Thierry"
+          , kms = 198.7
+          }
+        ]
     }
 
 

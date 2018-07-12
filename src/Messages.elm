@@ -1,5 +1,6 @@
 module Messages exposing (..)
 
+import Types exposing (..)
 import Http
 
 
@@ -16,7 +17,8 @@ type Msg
     | GoToDashboard
     | GoToObjectives
     | GoToChallenges
-    | DisplayForm
+    | GoToTestAPI
+    | DisplayObjectiveForm
     | SaveNewObjectiveName String
     | SaveNewObjectiveKms String
     | AddObjective
@@ -26,3 +28,10 @@ type Msg
     | LoadAPIWeather
     | WeatherTemp (Result Http.Error Float)
     | Weather (Result Http.Error String)
+    | DisplayChallengeForm
+    | SaveNewChallengeName String
+    | SaveNewChallengeKms String
+    | SelectParticipant Participant
+    | DeleteParticipant Participant
+    | AddChallenge
+    | DeleteOwnChallenge String

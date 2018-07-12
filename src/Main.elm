@@ -7,6 +7,7 @@ import Home exposing (viewHome)
 import Dashboard exposing (viewDash)
 import Objectives exposing (viewObjectives)
 import Challenges exposing (viewChallenges)
+import ChallengesTestAPI exposing (viewAPI)
 import Html exposing (Html, text, div, button)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
@@ -36,6 +37,7 @@ displayMenu model =
             , button [ onClick GoToDashboard ] [ text "Dashboard" ]
             , button [ onClick GoToObjectives ] [ text "Objectives" ]
             , button [ onClick GoToChallenges ] [ text "Challenges" ]
+            , button [ onClick GoToTestAPI ] [ text "Tests API" ]
             , button [ onClick (MsgUserWrapper Logout) ] [ text "Logout" ]
             ]
     else
@@ -48,14 +50,16 @@ displayMenu model =
 
 displayContent : Model -> Html Msg
 displayContent model =
-    if model.home then
+    if model.homePage then
         viewHome model
-    else if model.dashboard then
+    else if model.dashboardPage then
         viewDash model
-    else if model.objectives then
+    else if model.objectivesPage then
         viewObjectives model
-    else if model.challenges then
+    else if model.challengesPage then
         viewChallenges model
+    else if model.testAPIPage then
+        viewAPI model
     else
         div [] [ text "Page 404 - Not Found" ]
 

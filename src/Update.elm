@@ -46,72 +46,88 @@ update msg model =
 
         GoToHome ->
             ( { model
-                | home = True
-                , dashboard = False
-                , objectives = False
-                , challenges = False
+                | homePage = True
+                , dashboardPage = False
+                , objectivesPage = False
+                , challengesPage = False
+                , testAPIPage = False
               }
             , Cmd.none
             )
 
         GoToDashboard ->
             ( { model
-                | dashboard = True
-                , home = False
-                , objectives = False
-                , challenges = False
+                | dashboardPage = True
+                , homePage = False
+                , objectivesPage = False
+                , challengesPage = False
+                , testAPIPage = False
               }
             , Cmd.none
             )
 
         GoToObjectives ->
             ( { model
-                | objectives = True
-                , home = False
-                , dashboard = False
-                , challenges = False
+                | objectivesPage = True
+                , homePage = False
+                , dashboardPage = False
+                , challengesPage = False
+                , testAPIPage = False
               }
             , Cmd.none
             )
 
         GoToChallenges ->
             ( { model
-                | challenges = True
-                , home = False
-                , dashboard = False
-                , objectives = False
+                | challengesPage = True
+                , homePage = False
+                , dashboardPage = False
+                , objectivesPage = False
+                , testAPIPage = False
               }
             , Cmd.none
             )
 
-        DisplayForm ->
+        GoToTestAPI ->
+            ( { model
+                | testAPIPage = True
+                , homePage = False
+                , dashboardPage = False
+                , objectivesPage = False
+                , challengesPage = False
+              }
+            , Cmd.none
+            )
+
+        DisplayObjectiveForm ->
             ( { model | setObjForm = True }, Cmd.none )
 
         SaveNewObjectiveName name ->
             ( { model | newObjName = name }, Cmd.none )
 
         SaveNewObjectiveKms kms ->
-            ( { model | newObjKms = kms }, Cmd.none )
+            let
+                newIntKms =
+                    Result.withDefault 0 (String.toFloat kms)
+            in
+                ( { model | newObjKms = newIntKms }, Cmd.none )
 
         AddObjective ->
-            let
-                newKms =
-                    Result.withDefault 0 (String.toFloat model.newObjKms)
-            in
-                ( { model
-                    | destinations =
-                        { name = model.newObjName
-                        , kms = newKms
-                        , percent = round (model.kmsAchieved * 100 / newKms)
-                        , filling = round (model.kmsAchieved * 300 / newKms)
-                        , own = True
-                        }
-                            :: model.destinations
-                    , newObjName = ""
-                    , newObjKms = ""
-                  }
-                , Cmd.none
-                )
+            ( { model
+                | destinations =
+                    { name = model.newObjName
+                    , kms = model.newObjKms
+                    , percent = round (model.kmsAchieved * 100 / model.newObjKms)
+                    , filling = round (model.kmsAchieved * 300 / model.newObjKms)
+                    , own = True
+                    }
+                        :: model.destinations
+                , newObjName = ""
+                , newObjKms = 0.0
+                , setObjForm = False
+              }
+            , Cmd.none
+            )
 
         DeleteOwnObjective destinationName ->
             let
@@ -119,6 +135,64 @@ update msg model =
                     List.filter (\dest -> dest.name /= destinationName) model.destinations
             in
                 ( { model | destinations = cleanListDestinations }, Cmd.none )
+
+        DisplayChallengeForm ->
+            ( { model | setChallengeForm = not model.setChallengeForm }, Cmd.none )
+
+        SaveNewChallengeName name ->
+            ( { model | newChallengeName = name }, Cmd.none )
+
+        SaveNewChallengeKms kms ->
+            let
+                newIntKms =
+                    Result.withDefault 0 (String.toFloat kms)
+            in
+                ( { model | newChallengeKms = newIntKms }, Cmd.none )
+
+        SelectParticipant participant ->
+            let
+                newParticipantsList =
+                    List.append model.newChallengeParticipants
+                        [ { name = participant.name
+                          , kms = 0.0
+                          }
+                        ]
+            in
+                ( { model | newChallengeParticipants = newParticipantsList }, Cmd.none )
+
+        DeleteParticipant selectedParticipant ->
+            let
+                cleanParticipantsList =
+                    List.filter (\participant -> participant.name /= selectedParticipant.name) model.newChallengeParticipants
+            in
+                ( { model | newChallengeParticipants = cleanParticipantsList }, Cmd.none )
+
+        AddChallenge ->
+            let
+                newChallengesList =
+                    List.append model.challenges
+                        [ { name = model.newChallengeName
+                          , kms = model.newChallengeKms
+                          , participants = model.newChallengeParticipants
+                          , own = True
+                          }
+                        ]
+            in
+                ( { model
+                    | challenges = newChallengesList
+                    , newChallengeName = ""
+                    , newChallengeKms = 0.0
+                    , setChallengeForm = False
+                  }
+                , Cmd.none
+                )
+
+        DeleteOwnChallenge challengeName ->
+            let
+                cleanListChallenges =
+                    List.filter (\challenge -> challenge.name /= challengeName) model.challenges
+            in
+                ( { model | challenges = cleanListChallenges }, Cmd.none )
 
         LoadAPIGif ->
             ( model, fetchGif )

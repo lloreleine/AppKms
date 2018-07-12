@@ -24,3 +24,17 @@ type alias Destination =
     , filling : Int
     , own : Bool
     }
+
+
+type alias Challenge =
+    { name : String
+    , kms : Float
+    , participants : List Participant
+    , own : Bool
+    }
+
+
+type alias Participant =
+    { name : String
+    , kms : Float
+    }

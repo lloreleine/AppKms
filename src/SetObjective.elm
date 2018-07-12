@@ -11,7 +11,7 @@ setObjective : Model -> Html Msg
 setObjective model =
     div [ class "set-objective" ]
         [ div [] [ text "Set your own Objective" ]
-        , button [ class "btn-set-objective", onClick DisplayForm ] [ text ">" ]
+        , button [ class "btn-set-objective", onClick DisplayObjectiveForm ] [ text ">" ]
         , displayFormObj model
         ]
 
@@ -35,7 +35,6 @@ displayFormObj model =
                 [ text "Please, enter the number of kms:"
                 , input
                     [ type_ "text"
-                    , value model.newObjKms
                     , onInput SaveNewObjectiveKms
                     , class "input-setObj"
                     ]

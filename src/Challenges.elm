@@ -2,9 +2,11 @@ module Challenges exposing (viewChallenges)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
-import Html exposing (Html, text, div, img, button)
-import Html.Attributes exposing (src, class)
-import Html.Events exposing (onClick)
+import Types exposing (..)
+import SetFormChallenge exposing (setFormChallenge)
+import Html exposing (Html, text, div, img, button, h3, h5, span, i, input)
+import Html.Attributes exposing (src, class, disabled, value, type_)
+import Html.Events exposing (onClick, onInput)
 
 
 viewChallenges : Model -> Html Msg
@@ -12,10 +14,12 @@ viewChallenges model =
     div [ class "container-challenges" ]
         [ text "Challenges Page"
         , displayTitle model.user.name
-        , img [ src model.gifUrl ] []
-        , button [ onClick LoadAPIGif ] [ text "load Random Gif" ]
-        , displayWeather model
-        , button [ onClick LoadAPIWeather ] [ text "load Weather" ]
+        , displayChallenges model
+        , button [ class "btn-add-challenge", onClick DisplayChallengeForm ] [ text " + " ]
+        , if model.setChallengeForm then
+            setFormChallenge model
+          else
+            div [] []
         ]
 
 
@@ -33,15 +37,56 @@ displayTitle name =
 -- Content --
 
 
-displayWeather : Model -> Html msg
-displayWeather model =
-    div []
-        [ div []
-            [ text "Temperature of the day: "
-            , text (toString model.weatherTemp)
+displayChallenges : Model -> Html Msg
+displayChallenges model =
+    div [ class "cards" ]
+        (List.map
+            (\challenge ->
+                div [ class "card-challenge" ]
+                    [ h3 [] [ text challenge.name ]
+                    , div [] [ text ("- " ++ toString challenge.kms ++ " kms -") ]
+                    , h5 [] [ text "Participants: " ]
+                    , displayParticipants challenge
+                    , if challenge.own then
+                        button
+                            [ class "btn-delete-own-challenge"
+                            , onClick (DeleteOwnChallenge challenge.name)
+                            ]
+                            [ text "X" ]
+                      else
+                        div [] []
+                    ]
+            )
+            model.challenges
+        )
+
+
+displayParticipants : Challenge -> Html msg
+displayParticipants challenge =
+    let
+        orderedListParticipants =
+            List.sortWith (\t1 t2 -> compare (.kms t2) (.kms t1)) challenge.participants
+    in
+        div []
+            [ div [ class "list-participants" ]
+                (List.map
+                    (\participant ->
+                        div [ class "participant-challenge" ]
+                            [ i [ class "fas fa-medal" ] []
+                            , text participant.name
+                            , displayPercent participant challenge
+                            ]
+                    )
+                    orderedListParticipants
+                )
             ]
-        , div []
-            [ text "Weather: "
-            , text model.weather
-            ]
-        ]
+
+
+displayPercent : Participant -> Challenge -> Html msg
+displayPercent participant challenge =
+    let
+        percent =
+            round ((participant.kms * 100) / challenge.kms)
+    in
+        span [ class "percent-participant" ]
+            [ text (" - " ++ toString percent ++ "%") ]
