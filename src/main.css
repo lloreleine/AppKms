@@ -130,16 +130,25 @@ body {
 .cards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card-challenge {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 200px;
+  width: 290px;
+  max-height: 250px;
+  overflow: hidden;
+  text-align: center;
   margin: 8px 15px 8px 0;
   padding: 0 15px 10px 15px;
   box-shadow: 0 2px 6px grey;
+}
+
+.card-challenge:hover {
+  background: radial-gradient(white, #CECECE);
+  cursor: pointer;
 }
 
 .card-challenge h5 {
@@ -168,6 +177,22 @@ body {
 
 .list-participants div:nth-child(3) i {
     color: goldenrod;
+}
+
+/* Set Form Challenge */
+
+.form-setChallenge {
+  margin-top: 25px;
+}
+
+.form-setChallenge div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-setChallenge {
+  margin: 8px 0;
 }
 
 /* API Test Page */

@@ -99,34 +99,34 @@ update msg model =
             , Cmd.none
             )
 
-        DisplayForm ->
+        DisplayObjectiveForm ->
             ( { model | setObjForm = True }, Cmd.none )
 
         SaveNewObjectiveName name ->
             ( { model | newObjName = name }, Cmd.none )
 
         SaveNewObjectiveKms kms ->
-            ( { model | newObjKms = kms }, Cmd.none )
+            let
+                newIntKms =
+                    Result.withDefault 0 (String.toFloat kms)
+            in
+                ( { model | newObjKms = newIntKms }, Cmd.none )
 
         AddObjective ->
-            let
-                newKms =
-                    Result.withDefault 0 (String.toFloat model.newObjKms)
-            in
-                ( { model
-                    | destinations =
-                        { name = model.newObjName
-                        , kms = newKms
-                        , percent = round (model.kmsAchieved * 100 / newKms)
-                        , filling = round (model.kmsAchieved * 300 / newKms)
-                        , own = True
-                        }
-                            :: model.destinations
-                    , newObjName = ""
-                    , newObjKms = ""
-                  }
-                , Cmd.none
-                )
+            ( { model
+                | destinations =
+                    { name = model.newObjName
+                    , kms = model.newObjKms
+                    , percent = round (model.kmsAchieved * 100 / model.newObjKms)
+                    , filling = round (model.kmsAchieved * 300 / model.newObjKms)
+                    , own = True
+                    }
+                        :: model.destinations
+                , newObjName = ""
+                , newObjKms = 0.0
+              }
+            , Cmd.none
+            )
 
         DeleteOwnObjective destinationName ->
             let
@@ -134,6 +134,42 @@ update msg model =
                     List.filter (\dest -> dest.name /= destinationName) model.destinations
             in
                 ( { model | destinations = cleanListDestinations }, Cmd.none )
+
+        DisplayChallengeForm ->
+            ( { model | setChallengeForm = not model.setChallengeForm }, Cmd.none )
+
+        SaveNewChallengeName name ->
+            ( { model | newChallengeName = name }, Cmd.none )
+
+        SaveNewChallengeKms kms ->
+            let
+                newIntKms =
+                    Result.withDefault 0 (String.toFloat kms)
+            in
+                ( { model | newChallengeKms = newIntKms }, Cmd.none )
+
+        AddChallenge ->
+            let
+                newChallengesList =
+                    List.append model.challenges
+                        [ { name = model.newChallengeName
+                          , kms = model.newChallengeKms
+                          , participants =
+                                [ { name = "Me"
+                                  , kms = 1.0
+                                  }
+                                ]
+                          , own = True
+                          }
+                        ]
+            in
+                ( { model
+                    | challenges = newChallengesList
+                    , newChallengeName = ""
+                    , newChallengeKms = 0.0
+                  }
+                , Cmd.none
+                )
 
         LoadAPIGif ->
             ( model, fetchGif )
@@ -158,28 +194,6 @@ update msg model =
 
         Weather (Err _) ->
             ( model, Cmd.none )
-
-        AddChallenge ->
-            let
-                newChallengesList =
-                    List.append model.challenges
-                        [ { name = "test"
-                          , kms = 0.0
-                          , participants =
-                                [ { name = "Me"
-                                  , kms = 0.0
-                                  }
-                                ]
-                          , own = True
-                          }
-                        ]
-            in
-                ( { model
-                    | challenges =
-                        newChallengesList
-                  }
-                , Cmd.none
-                )
 
 
 fetchGif : Cmd Msg

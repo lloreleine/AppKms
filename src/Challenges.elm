@@ -3,9 +3,10 @@ module Challenges exposing (viewChallenges)
 import Messages exposing (..)
 import Model exposing (init, Model)
 import Types exposing (..)
-import Html exposing (Html, text, div, img, button, h3, h5, span, i)
-import Html.Attributes exposing (src, class)
-import Html.Events exposing (onClick)
+import SetFormChallenge exposing (setFormChallenge)
+import Html exposing (Html, text, div, img, button, h3, h5, span, i, input)
+import Html.Attributes exposing (src, class, disabled, value, type_)
+import Html.Events exposing (onClick, onInput)
 
 
 viewChallenges : Model -> Html Msg
@@ -14,7 +15,11 @@ viewChallenges model =
         [ text "Challenges Page"
         , displayTitle model.user.name
         , displayChallenges model
-        , button [ class "btn-add-challenge", onClick AddChallenge ] [ text " + " ]
+        , button [ class "btn-add-challenge", onClick DisplayChallengeForm ] [ text " + " ]
+        , if model.setChallengeForm then
+            setFormChallenge model
+          else
+            div [] []
         ]
 
 

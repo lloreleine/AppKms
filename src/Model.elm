@@ -20,9 +20,13 @@ type alias Model =
     , destinations : List Destination
     , kmsAchieved : Float
     , challenges : List Challenge
+    , setChallengeForm : Bool
+    , newChallengeName : String
+    , newChallengeKms : Float
+    , newChallengeParticipants : List Participant
     , setObjForm : Bool
     , newObjName : String
-    , newObjKms : String
+    , newObjKms : Float
     , gifUrl : String
     , weather : String
     , weatherTemp : Float
@@ -35,7 +39,7 @@ initialModel =
     { user =
         { name = ""
         , password = ""
-        , status = "String"
+        , status = "User"
         , connected = False
         }
     , currentName = ""
@@ -116,13 +120,26 @@ initialModel =
                 , { name = "Loréleine"
                   , kms = 67.8
                   }
+                , { name = "Vincent"
+                  , kms = 16.3
+                  }
+                , { name = "Kévin"
+                  , kms = 78.5
+                  }
+                , { name = "Virginie"
+                  , kms = 127.9
+                  }
                 ]
           , own = False
           }
         ]
+    , setChallengeForm = False
+    , newChallengeName = ""
+    , newChallengeKms = 0.0
+    , newChallengeParticipants = []
     , setObjForm = False
     , newObjName = ""
-    , newObjKms = ""
+    , newObjKms = 0.0
     , gifUrl = ""
     , weather = ""
     , weatherTemp = 0.0

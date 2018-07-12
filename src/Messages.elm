@@ -17,7 +17,7 @@ type Msg
     | GoToObjectives
     | GoToChallenges
     | GoToTestAPI
-    | DisplayForm
+    | DisplayObjectiveForm
     | SaveNewObjectiveName String
     | SaveNewObjectiveKms String
     | AddObjective
@@ -27,4 +27,7 @@ type Msg
     | LoadAPIWeather
     | WeatherTemp (Result Http.Error Float)
     | Weather (Result Http.Error String)
+    | DisplayChallengeForm
+    | SaveNewChallengeName String
+    | SaveNewChallengeKms String
     | AddChallenge
