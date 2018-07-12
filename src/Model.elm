@@ -31,6 +31,7 @@ type alias Model =
     , weather : String
     , weatherTemp : Float
     , error : String
+    , community : List Participant
     }
 
 
@@ -144,6 +145,41 @@ initialModel =
     , weather = ""
     , weatherTemp = 0.0
     , error = ""
+    , community =
+        [ { name = "Guillaume"
+          , kms = 56.7
+          }
+        , { name = "Charles"
+          , kms = 134.5
+          }
+        , { name = "Loréleine"
+          , kms = 67.8
+          }
+        , { name = "Vincent"
+          , kms = 16.3
+          }
+        , { name = "Kévin"
+          , kms = 78.5
+          }
+        , { name = "Virginie"
+          , kms = 127.9
+          }
+        , { name = "Arnaud"
+          , kms = 78.4
+          }
+        , { name = "Thomas"
+          , kms = 23.2
+          }
+        , { name = "Dominique"
+          , kms = 5.3
+          }
+        , { name = "Sandie"
+          , kms = 3.8
+          }
+        , { name = "Thierry"
+          , kms = 198.7
+          }
+        ]
     }
 
 

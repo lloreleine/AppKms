@@ -124,6 +124,7 @@ update msg model =
                         :: model.destinations
                 , newObjName = ""
                 , newObjKms = 0.0
+                , setObjForm = False
               }
             , Cmd.none
             )
@@ -148,17 +149,31 @@ update msg model =
             in
                 ( { model | newChallengeKms = newIntKms }, Cmd.none )
 
+        SelectParticipant participant ->
+            let
+                newParticipantsList =
+                    List.append model.newChallengeParticipants
+                        [ { name = participant.name
+                          , kms = 0.0
+                          }
+                        ]
+            in
+                ( { model | newChallengeParticipants = newParticipantsList }, Cmd.none )
+
+        DeleteParticipant selectedParticipant ->
+            let
+                cleanParticipantsList =
+                    List.filter (\participant -> participant.name /= selectedParticipant.name) model.newChallengeParticipants
+            in
+                ( { model | newChallengeParticipants = cleanParticipantsList }, Cmd.none )
+
         AddChallenge ->
             let
                 newChallengesList =
                     List.append model.challenges
                         [ { name = model.newChallengeName
                           , kms = model.newChallengeKms
-                          , participants =
-                                [ { name = "Me"
-                                  , kms = 1.0
-                                  }
-                                ]
+                          , participants = model.newChallengeParticipants
                           , own = True
                           }
                         ]
@@ -167,9 +182,17 @@ update msg model =
                     | challenges = newChallengesList
                     , newChallengeName = ""
                     , newChallengeKms = 0.0
+                    , setChallengeForm = False
                   }
                 , Cmd.none
                 )
+
+        DeleteOwnChallenge challengeName ->
+            let
+                cleanListChallenges =
+                    List.filter (\challenge -> challenge.name /= challengeName) model.challenges
+            in
+                ( { model | challenges = cleanListChallenges }, Cmd.none )
 
         LoadAPIGif ->
             ( model, fetchGif )

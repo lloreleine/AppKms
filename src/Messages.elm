@@ -1,5 +1,6 @@
 module Messages exposing (..)
 
+import Types exposing (..)
 import Http
 
 
@@ -30,4 +31,7 @@ type Msg
     | DisplayChallengeForm
     | SaveNewChallengeName String
     | SaveNewChallengeKms String
+    | SelectParticipant Participant
+    | DeleteParticipant Participant
     | AddChallenge
+    | DeleteOwnChallenge String

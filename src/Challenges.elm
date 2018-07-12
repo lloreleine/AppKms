@@ -37,7 +37,7 @@ displayTitle name =
 -- Content --
 
 
-displayChallenges : Model -> Html msg
+displayChallenges : Model -> Html Msg
 displayChallenges model =
     div [ class "cards" ]
         (List.map
@@ -47,6 +47,14 @@ displayChallenges model =
                     , div [] [ text ("- " ++ toString challenge.kms ++ " kms -") ]
                     , h5 [] [ text "Participants: " ]
                     , displayParticipants challenge
+                    , if challenge.own then
+                        button
+                            [ class "btn-delete-own-challenge"
+                            , onClick (DeleteOwnChallenge challenge.name)
+                            ]
+                            [ text "X" ]
+                      else
+                        div [] []
                     ]
             )
             model.challenges
@@ -63,7 +71,7 @@ displayParticipants challenge =
             [ div [ class "list-participants" ]
                 (List.map
                     (\participant ->
-                        div []
+                        div [ class "participant-challenge" ]
                             [ i [ class "fas fa-medal" ] []
                             , text participant.name
                             , displayPercent participant challenge
