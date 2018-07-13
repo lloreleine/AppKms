@@ -5,6 +5,7 @@ type alias User =
     { name : String
     , password : String
     , status : String
+    , kms : Float
     , connected : Bool
     }
 

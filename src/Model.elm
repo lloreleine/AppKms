@@ -16,6 +16,7 @@ type alias Model =
     , objectivesPage : Bool
     , challengesPage : Bool
     , testAPIPage : Bool
+    , communityPage : Bool
     , activities : List Activity
     , destinations : List Destination
     , kmsAchieved : Float
@@ -31,7 +32,8 @@ type alias Model =
     , weather : String
     , weatherTemp : Float
     , error : String
-    , community : List Participant
+    , community : List User
+    , openUserCard : User
     }
 
 
@@ -41,6 +43,7 @@ initialModel =
         { name = ""
         , password = ""
         , status = "User"
+        , kms = 0.0
         , connected = False
         }
     , currentName = ""
@@ -50,6 +53,7 @@ initialModel =
     , objectivesPage = False
     , challengesPage = False
     , testAPIPage = False
+    , communityPage = False
     , activities =
         [ { date = "28/06/2018"
           , duration = 97
@@ -147,39 +151,79 @@ initialModel =
     , error = ""
     , community =
         [ { name = "Guillaume"
+          , password = ""
+          , status = "User"
           , kms = 56.7
+          , connected = True
           }
         , { name = "Charles"
+          , password = ""
+          , status = "User"
           , kms = 134.5
+          , connected = False
           }
         , { name = "Loréleine"
+          , password = ""
+          , status = "User"
           , kms = 67.8
+          , connected = False
           }
         , { name = "Vincent"
+          , password = ""
+          , status = "User"
           , kms = 16.3
+          , connected = True
           }
         , { name = "Kévin"
+          , password = ""
+          , status = "User"
           , kms = 78.5
+          , connected = True
           }
         , { name = "Virginie"
+          , password = ""
+          , status = "User"
           , kms = 127.9
+          , connected = True
           }
         , { name = "Arnaud"
+          , password = ""
+          , status = "User"
           , kms = 78.4
+          , connected = False
           }
         , { name = "Thomas"
+          , password = ""
+          , status = "User"
           , kms = 23.2
+          , connected = False
           }
         , { name = "Dominique"
+          , password = ""
+          , status = "User"
           , kms = 5.3
+          , connected = False
           }
         , { name = "Sandie"
+          , password = ""
+          , status = "User"
           , kms = 3.8
+          , connected = True
           }
         , { name = "Thierry"
+          , password = ""
+          , status = "User"
           , kms = 198.7
+          , connected = True
           }
         ]
+    , openUserCard =
+        { name = ""
+        , password = ""
+        , status = ""
+        , kms = 0.0
+        , connected = False
+        }
     }
 
 

@@ -51,6 +51,7 @@ update msg model =
                 , objectivesPage = False
                 , challengesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -62,6 +63,7 @@ update msg model =
                 , objectivesPage = False
                 , challengesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -73,6 +75,7 @@ update msg model =
                 , dashboardPage = False
                 , challengesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -84,6 +87,7 @@ update msg model =
                 , dashboardPage = False
                 , objectivesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -91,6 +95,19 @@ update msg model =
         GoToTestAPI ->
             ( { model
                 | testAPIPage = True
+                , homePage = False
+                , dashboardPage = False
+                , objectivesPage = False
+                , challengesPage = False
+                , communityPage = False
+              }
+            , Cmd.none
+            )
+
+        GoToCommunity ->
+            ( { model
+                | communityPage = True
+                , testAPIPage = False
                 , homePage = False
                 , dashboardPage = False
                 , objectivesPage = False
@@ -217,6 +234,9 @@ update msg model =
 
         Weather (Err _) ->
             ( model, Cmd.none )
+
+        OpenUserCard user ->
+            ( { model | openUserCard = user }, Cmd.none )
 
 
 fetchGif : Cmd Msg

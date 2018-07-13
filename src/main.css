@@ -257,3 +257,70 @@ body {
   margin-top: 50px;
   text-align: center;
 }
+
+/* Community Page */
+
+.container-community {
+  display: grid;
+  grid-template-columns: 100%;
+  text-align: center;
+  margin: 15px 20px;
+  font-size: 18px;
+}
+
+.subtitle-community {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.cards-community {
+
+}
+
+.card-user {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  height: 70px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: height 0.3 ease-in-out;
+}
+
+.user-card-open {
+  height: 150px;
+}
+
+.card-user-name {
+  margin-left: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.user-icon {
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+.card-user-sticker {
+  margin: auto;
+}
+
+.sticker {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  line-height: 30px;
+  background-color: lightsalmon;
+
+}
+
+.card-user-kms {
+  margin-right: 30px;
+  display: flex;
+  align-items: baseline;
+}
+
+.title-kms-achieved {
+  margin-right: 10px;
+}

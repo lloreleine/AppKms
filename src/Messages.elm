@@ -18,6 +18,7 @@ type Msg
     | GoToObjectives
     | GoToChallenges
     | GoToTestAPI
+    | GoToCommunity
     | DisplayObjectiveForm
     | SaveNewObjectiveName String
     | SaveNewObjectiveKms String
@@ -31,7 +32,8 @@ type Msg
     | DisplayChallengeForm
     | SaveNewChallengeName String
     | SaveNewChallengeKms String
-    | SelectParticipant Participant
+    | SelectParticipant User
     | DeleteParticipant Participant
     | AddChallenge
     | DeleteOwnChallenge String
+    | OpenUserCard User

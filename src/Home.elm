@@ -74,4 +74,5 @@ displayGreetings name =
                 , button [ class "btn-dash", onClick GoToDashboard ] [ text "Go to my dashboard" ]
                 , button [ class "btn-dash", onClick GoToObjectives ] [ text "See my objectives" ]
                 , button [ class "btn-dash", onClick GoToChallenges ] [ text "Check on the challenges" ]
+                , button [ class "btn-dash", onClick GoToCommunity ] [ text "Discover our community" ]
                 ]
