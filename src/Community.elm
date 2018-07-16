@@ -2,6 +2,7 @@ module Community exposing (viewCommunity)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
+import Types exposing (..)
 import Html exposing (Html, text, div, button, h3, h5, i)
 import Html.Attributes exposing (class, src, style)
 import Html.Events exposing (onClick)
@@ -32,7 +33,7 @@ displayTitle name =
 
 displayCommunity : Model -> Html Msg
 displayCommunity model =
-    div [ class "cards-community" ]
+    div []
         (List.map
             (\user ->
                 div
@@ -48,13 +49,72 @@ displayCommunity model =
                         , h3 [] [ text user.name ]
                         ]
                     , div [ class "card-user-sticker" ]
-                        [ div [ class "sticker" ] [ text "3" ]
+                        [ div
+                            [ class "sticker-connection"
+                            , if user.connected then
+                                style [ ( "background-color", "green" ) ]
+                              else
+                                style [ ( "background-color", "red" ) ]
+                            ]
+                            []
                         ]
                     , div [ class "card-user-kms" ]
                         [ h5 [ class "title-kms-achieved" ] [ text "Kms achevied: " ]
                         , text (toString user.kms ++ "kms")
                         ]
+
+                    -- hidden part:
+                    , div
+                        [ class "card-challenges" ]
+                        [ text "Challenges in progress: "
+                        , displayNumberOfChallenges model user
+                        ]
+                    , div
+                        [ class "card-add-friend" ]
+                        [ div
+                            [ class "btn-add-friend"
+                            , onClick (MsgUserWrapper (AddFriend model.user user))
+                            ]
+                            [ text "+ Add as friend" ]
+                        ]
+                    , div
+                        [ class "card-status" ]
+                        [ if (user.kms < 10) then
+                            i [ class "fas fa-bed" ] []
+                          else if (user.kms > 200) then
+                            i [ class "fas fa-rocket" ] []
+                          else if (user.kms > 100) then
+                            i [ class "fas fa-plane-departure" ] []
+                          else if (user.kms > 30) then
+                            i [ class "fas fa-bus-alt" ] []
+                          else if (user.kms > 10) then
+                            i [ class "fas fa-bicycle" ] []
+                          else
+                            i [ class "far fa-meh-blank" ] []
+                        ]
                     ]
             )
             model.community
         )
+
+
+displayNumberOfChallenges : Model -> User -> Html msg
+displayNumberOfChallenges model user =
+    -- let
+    --     nbChallenge =
+    --         List.map
+    --             (\challenge ->
+    --                 List.map
+    --                     (\participant -> List.member user.name participant.name)
+    --                     challenge.participants
+    --             )
+    --             model.challenges
+    --             |> Debug.log "List"
+    --             |> List.map
+    --                 (\array ->
+    --                     List.filter (\participant -> List.member user.name participant) array
+    --                 )
+    --             |> List.length
+    -- in
+    div [ class "sticker-challenges-nb" ]
+        [ text "No" ]

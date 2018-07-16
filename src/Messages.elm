@@ -7,6 +7,7 @@ import Http
 type MsgUser
     = Register
     | Logout
+    | AddFriend User User
 
 
 type Msg

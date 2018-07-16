@@ -175,6 +175,10 @@ body {
     color: goldenrod;
 }
 
+.list-participants div:nth-child(n+4) i {
+  display: none;
+}
+
 .btn-add-challenge {
   margin-top: 50px;
   width: 50px;
@@ -273,10 +277,6 @@ body {
   margin-bottom: 20px;
 }
 
-.cards-community {
-
-}
-
 .card-user {
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -284,16 +284,23 @@ body {
   border: 1px solid grey;
   border-radius: 5px;
   margin-bottom: 10px;
-  transition: height 0.3 ease-in-out;
+  overflow: hidden;
+  align-items: center;
 }
 
 .user-card-open {
-  height: 150px;
+  height: 140px;
+  /* NOT WORKING...*/
+  transition: height 0.5 ease-in-out;
+}
+
+.card-user-name, .card-user-kms, .card-user-sticker {
+  display: flex;
+  min-height: 70px;
 }
 
 .card-user-name {
   margin-left: 20px;
-  display: flex;
   align-items: baseline;
 }
 
@@ -303,24 +310,66 @@ body {
 }
 
 .card-user-sticker {
-  margin: auto;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px dashed #CECECE;
 }
 
-.sticker {
-  width: 30px;
-  height: 30px;
-  border-radius: 30px;
-  line-height: 30px;
-  background-color: lightsalmon;
-
+.sticker-connection {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  line-height: 15px;
+  background-color: green;
 }
 
 .card-user-kms {
   margin-right: 30px;
-  display: flex;
   align-items: baseline;
 }
 
 .title-kms-achieved {
   margin-right: 10px;
+}
+
+/* hidden part */
+
+.card-add-friend, .card-status, .card-challenges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+}
+
+.card-challenges {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.sticker-challenges-nb {
+  margin-left: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  line-height: 30px;
+  background-color: darkgrey;
+}
+
+.card-add-friend {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-add-friend {
+  box-shadow: 0 0 3px darkgrey;
+  border-radius: 5px;
+  height: 20px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.card-status {
+  font-size: 25px;
 }

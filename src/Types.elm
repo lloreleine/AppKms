@@ -7,7 +7,19 @@ type alias User =
     , status : String
     , kms : Float
     , connected : Bool
+    , friends : List Friend
     }
+
+
+type alias Friend =
+    { name : String
+    , status : FriendStatus
+    }
+
+
+type FriendStatus
+    = Pending
+    | Validated
 
 
 type alias Activity =

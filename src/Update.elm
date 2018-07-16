@@ -29,6 +29,18 @@ updateUser msg model user =
                 , connected = False
             }
 
+        AddFriend userConnected friend ->
+            { user
+                | friends =
+                    [ { name = friend.name
+                      , status = Pending
+                      }
+
+                    -- NOT WORKING --
+                    -- :: user.friends
+                    ]
+            }
+
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -236,7 +248,21 @@ update msg model =
             ( model, Cmd.none )
 
         OpenUserCard user ->
-            ( { model | openUserCard = user }, Cmd.none )
+            if model.openUserCard == user then
+                ( { model
+                    | openUserCard =
+                        { name = ""
+                        , password = ""
+                        , status = ""
+                        , kms = 0.0
+                        , connected = False
+                        , friends = []
+                        }
+                  }
+                , Cmd.none
+                )
+            else
+                ( { model | openUserCard = user }, Cmd.none )
 
 
 fetchGif : Cmd Msg

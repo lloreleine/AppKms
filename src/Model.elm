@@ -45,6 +45,7 @@ initialModel =
         , status = "User"
         , kms = 0.0
         , connected = False
+        , friends = []
         }
     , currentName = ""
     , currentPassword = ""
@@ -155,66 +156,77 @@ initialModel =
           , status = "User"
           , kms = 56.7
           , connected = True
+          , friends = []
           }
         , { name = "Charles"
           , password = ""
           , status = "User"
           , kms = 134.5
           , connected = False
+          , friends = []
           }
         , { name = "Loréleine"
           , password = ""
           , status = "User"
           , kms = 67.8
           , connected = False
+          , friends = []
           }
         , { name = "Vincent"
           , password = ""
           , status = "User"
           , kms = 16.3
           , connected = True
+          , friends = []
           }
         , { name = "Kévin"
           , password = ""
           , status = "User"
           , kms = 78.5
           , connected = True
+          , friends = []
           }
         , { name = "Virginie"
           , password = ""
           , status = "User"
           , kms = 127.9
           , connected = True
+          , friends = []
           }
         , { name = "Arnaud"
           , password = ""
           , status = "User"
           , kms = 78.4
           , connected = False
+          , friends = []
           }
         , { name = "Thomas"
           , password = ""
           , status = "User"
           , kms = 23.2
           , connected = False
+          , friends = []
           }
         , { name = "Dominique"
           , password = ""
           , status = "User"
           , kms = 5.3
           , connected = False
+          , friends = []
           }
         , { name = "Sandie"
           , password = ""
           , status = "User"
           , kms = 3.8
           , connected = True
+          , friends = []
           }
         , { name = "Thierry"
           , password = ""
           , status = "User"
-          , kms = 198.7
+          , kms = 228.7
           , connected = True
+          , friends = []
           }
         ]
     , openUserCard =
@@ -223,6 +235,7 @@ initialModel =
         , status = ""
         , kms = 0.0
         , connected = False
+        , friends = []
         }
     }
 
