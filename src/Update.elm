@@ -30,16 +30,17 @@ updateUser msg model user =
             }
 
         AddFriend userConnected friend ->
-            { user
-                | friends =
-                    [ { name = friend.name
-                      , status = Pending
-                      }
-
-                    -- NOT WORKING --
-                    -- :: user.friends
-                    ]
-            }
+            let
+                newFriendsList =
+                    List.append userConnected.friends
+                        [ { name = friend.name
+                          , status = Pending
+                          }
+                        ]
+            in
+                { user
+                    | friends = newFriendsList
+                }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

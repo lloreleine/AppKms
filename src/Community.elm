@@ -42,9 +42,11 @@ displayCommunity model =
                         class "user-card-open"
                       else
                         class ""
-                    , onClick (OpenUserCard user)
                     ]
-                    [ div [ class "card-user-name" ]
+                    [ div
+                        [ class "card-user-name"
+                        , onClick (OpenUserCard user)
+                        ]
                         [ i [ class "fas fa-user-circle user-icon" ] []
                         , h3 [] [ text user.name ]
                         ]
@@ -71,11 +73,16 @@ displayCommunity model =
                         ]
                     , div
                         [ class "card-add-friend" ]
-                        [ div
-                            [ class "btn-add-friend"
-                            , onClick (MsgUserWrapper (AddFriend model.user user))
-                            ]
-                            [ text "+ Add as friend" ]
+                        [ if (checkFriendship model.user user) then
+                            div
+                                [ class "btn-friend" ]
+                                [ text "Friend" ]
+                          else
+                            div
+                                [ class "btn-add-friend"
+                                , onClick (MsgUserWrapper (AddFriend model.user user))
+                                ]
+                                [ text "+ Add as friend" ]
                         ]
                     , div
                         [ class "card-status" ]
@@ -118,3 +125,29 @@ displayNumberOfChallenges model user =
     -- in
     div [ class "sticker-challenges-nb" ]
         [ text "No" ]
+
+
+checkFriendship : User -> User -> Bool
+checkFriendship userConnected userCommunity =
+    let
+        check =
+            List.filter (\friend -> friend.name == userCommunity.name) userConnected.friends
+
+        -- check =
+        --     List.map (\friend -> List.member userCommunity.name friend.name) userConnected.friends
+    in
+        if (List.isEmpty check) then
+            False
+        else
+            True
+
+
+
+-- friends =
+--         [ { name = friend.name1
+--           , status = Pending
+--           }
+--          , { name = friend.name2
+--           , status = Pending
+--           }
+--         ]
