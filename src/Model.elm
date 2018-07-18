@@ -45,7 +45,11 @@ initialModel =
         , status = "User"
         , kms = 0.0
         , connected = False
-        , friends = []
+        , friends =
+            [ { name = "Guillaume"
+              , status = Validated
+              }
+            ]
         }
     , currentName = ""
     , currentPassword = ""
@@ -111,6 +115,12 @@ initialModel =
                 [ { name = "Guillaume"
                   , kms = 56.7
                   }
+                , { name = "Arnaud"
+                  , kms = 17.8
+                  }
+                , { name = "Loréleine"
+                  , kms = 67.8
+                  }
                 ]
           , own = False
           }
@@ -128,12 +138,6 @@ initialModel =
                   }
                 , { name = "Vincent"
                   , kms = 16.3
-                  }
-                , { name = "Kévin"
-                  , kms = 78.5
-                  }
-                , { name = "Virginie"
-                  , kms = 127.9
                   }
                 ]
           , own = False

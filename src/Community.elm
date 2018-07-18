@@ -73,7 +73,11 @@ displayCommunity model =
                         ]
                     , div
                         [ class "card-add-friend" ]
-                        [ if (checkFriendship model.user user) then
+                        [ if (checkFriendship model.user user == Pending) then
+                            div
+                                [ class "btn-friend" ]
+                                [ text "Demand - Pending" ]
+                          else if (checkFriendship model.user user == Validated) then
                             div
                                 [ class "btn-friend" ]
                                 [ text "Friend" ]
@@ -107,47 +111,48 @@ displayCommunity model =
 
 displayNumberOfChallenges : Model -> User -> Html msg
 displayNumberOfChallenges model user =
-    -- let
-    --     nbChallenge =
-    --         List.map
-    --             (\challenge ->
-    --                 List.map
-    --                     (\participant -> List.member user.name participant.name)
-    --                     challenge.participants
-    --             )
-    --             model.challenges
-    --             |> Debug.log "List"
-    --             |> List.map
-    --                 (\array ->
-    --                     List.filter (\participant -> List.member user.name participant) array
-    --                 )
-    --             |> List.length
-    -- in
-    div [ class "sticker-challenges-nb" ]
-        [ text "No" ]
+    let
+        nbChallenge =
+            List.map
+                (\challenge ->
+                    List.map
+                        (\participant -> participant.name)
+                        challenge.participants
+                )
+                model.challenges
+                |> List.map
+                    (\challengeNames ->
+                        List.filter (\participant -> user.name == participant) challengeNames
+                    )
+                |> List.map
+                    (\challengeNames ->
+                        List.length challengeNames
+                    )
+                |> List.foldl (\x a -> x + a) 0
+    in
+        div [ class "sticker-challenges-nb" ]
+            [ text (toString nbChallenge) ]
 
 
-checkFriendship : User -> User -> Bool
+checkFriendship : User -> User -> FriendStatus
 checkFriendship userConnected userCommunity =
     let
         check =
             List.filter (\friend -> friend.name == userCommunity.name) userConnected.friends
-
-        -- check =
-        --     List.map (\friend -> List.member userCommunity.name friend.name) userConnected.friends
     in
         if (List.isEmpty check) then
-            False
+            NoFriendship
         else
-            True
+            checkStatusFriendship check
 
 
-
--- friends =
---         [ { name = friend.name1
---           , status = Pending
---           }
---          , { name = friend.name2
---           , status = Pending
---           }
---         ]
+checkStatusFriendship : List Friend -> FriendStatus
+checkStatusFriendship check =
+    let
+        mapping =
+            List.map (\friend -> friend.status) check
+    in
+        if (mapping == [ Pending ]) then
+            Pending
+        else
+            Validated

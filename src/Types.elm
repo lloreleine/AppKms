@@ -18,7 +18,8 @@ type alias Friend =
 
 
 type FriendStatus
-    = Pending
+    = NoFriendship
+    | Pending
     | Validated
 
 

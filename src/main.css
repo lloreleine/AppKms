@@ -372,9 +372,8 @@ body {
 }
 
 .btn-friend {
-  box-shadow: 0 0 3px darkgrey;
+  box-shadow: 0 0 4px coral;
   border-radius: 5px;
-  background-color: papayawhip;
   height: 20px;
   width: 150px;
 }
