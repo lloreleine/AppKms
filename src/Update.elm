@@ -29,6 +29,19 @@ updateUser msg model user =
                 , connected = False
             }
 
+        AddFriend userConnected friend ->
+            let
+                newFriendsList =
+                    List.append userConnected.friends
+                        [ { name = friend.name
+                          , status = Pending
+                          }
+                        ]
+            in
+                { user
+                    | friends = newFriendsList
+                }
+
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -51,6 +64,7 @@ update msg model =
                 , objectivesPage = False
                 , challengesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -62,6 +76,7 @@ update msg model =
                 , objectivesPage = False
                 , challengesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -73,6 +88,7 @@ update msg model =
                 , dashboardPage = False
                 , challengesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -84,6 +100,7 @@ update msg model =
                 , dashboardPage = False
                 , objectivesPage = False
                 , testAPIPage = False
+                , communityPage = False
               }
             , Cmd.none
             )
@@ -91,6 +108,19 @@ update msg model =
         GoToTestAPI ->
             ( { model
                 | testAPIPage = True
+                , homePage = False
+                , dashboardPage = False
+                , objectivesPage = False
+                , challengesPage = False
+                , communityPage = False
+              }
+            , Cmd.none
+            )
+
+        GoToCommunity ->
+            ( { model
+                | communityPage = True
+                , testAPIPage = False
                 , homePage = False
                 , dashboardPage = False
                 , objectivesPage = False
@@ -182,6 +212,7 @@ update msg model =
                     | challenges = newChallengesList
                     , newChallengeName = ""
                     , newChallengeKms = 0.0
+                    , newChallengeParticipants = []
                     , setChallengeForm = False
                   }
                 , Cmd.none
@@ -217,6 +248,23 @@ update msg model =
 
         Weather (Err _) ->
             ( model, Cmd.none )
+
+        OpenUserCard user ->
+            if model.openUserCard == user then
+                ( { model
+                    | openUserCard =
+                        { name = ""
+                        , password = ""
+                        , status = ""
+                        , kms = 0.0
+                        , connected = False
+                        , friends = []
+                        }
+                  }
+                , Cmd.none
+                )
+            else
+                ( { model | openUserCard = user }, Cmd.none )
 
 
 fetchGif : Cmd Msg

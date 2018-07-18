@@ -175,6 +175,10 @@ body {
     color: goldenrod;
 }
 
+.list-participants div:nth-child(n+4) i {
+  display: none;
+}
+
 .btn-add-challenge {
   margin-top: 50px;
   width: 50px;
@@ -256,4 +260,124 @@ body {
 .content-API {
   margin-top: 50px;
   text-align: center;
+}
+
+/* Community Page */
+
+.container-community {
+  display: grid;
+  grid-template-columns: 100%;
+  text-align: center;
+  margin: 15px 20px;
+  font-size: 18px;
+}
+
+.subtitle-community {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.card-user {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  height: 70px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  align-items: center;
+}
+
+.user-card-open {
+  height: 140px;
+  /* NOT WORKING...*/
+  transition: height 0.5 ease-in-out;
+}
+
+.card-user-name, .card-user-kms, .card-user-sticker {
+  display: flex;
+  min-height: 70px;
+}
+
+.card-user-name {
+  margin-left: 20px;
+  align-items: baseline;
+  cursor: pointer;
+}
+
+.user-icon {
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+.card-user-sticker {
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px dashed #CECECE;
+}
+
+.sticker-connection {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  line-height: 15px;
+  background-color: green;
+}
+
+.card-user-kms {
+  margin-right: 30px;
+  align-items: baseline;
+}
+
+.title-kms-achieved {
+  margin-right: 10px;
+}
+
+/* hidden part */
+
+.card-add-friend, .card-status, .card-challenges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+}
+
+.card-challenges {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.sticker-challenges-nb {
+  margin-left: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  line-height: 30px;
+  background-color: darkgrey;
+}
+
+.card-add-friend {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-add-friend {
+  box-shadow: 0 0 3px darkgrey;
+  border-radius: 5px;
+  height: 20px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.btn-friend {
+  box-shadow: 0 0 4px coral;
+  border-radius: 5px;
+  height: 20px;
+  width: 150px;
+}
+
+.card-status {
+  font-size: 25px;
 }

@@ -5,8 +5,22 @@ type alias User =
     { name : String
     , password : String
     , status : String
+    , kms : Float
     , connected : Bool
+    , friends : List Friend
     }
+
+
+type alias Friend =
+    { name : String
+    , status : FriendStatus
+    }
+
+
+type FriendStatus
+    = NoFriendship
+    | Pending
+    | Validated
 
 
 type alias Activity =

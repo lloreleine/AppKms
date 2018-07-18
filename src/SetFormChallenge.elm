@@ -2,7 +2,6 @@ module SetFormChallenge exposing (setFormChallenge)
 
 import Messages exposing (..)
 import Model exposing (init, Model)
-import Types exposing (..)
 import Html exposing (Html, text, div, input, button, select, option, span)
 import Html.Attributes exposing (class, type_, value, disabled)
 import Html.Events exposing (onClick, onInput)
