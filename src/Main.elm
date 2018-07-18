@@ -52,7 +52,7 @@ displayMenu model =
 
 displayContent : Model -> Html Msg
 displayContent model =
-    if model.homePage then
+    if model.user.connected == False || model.homePage then
         viewHome model
     else if model.dashboardPage then
         viewDash model

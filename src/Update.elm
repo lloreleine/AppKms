@@ -212,6 +212,7 @@ update msg model =
                     | challenges = newChallengesList
                     , newChallengeName = ""
                     , newChallengeKms = 0.0
+                    , newChallengeParticipants = []
                     , setChallengeForm = False
                   }
                 , Cmd.none

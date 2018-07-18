@@ -76,7 +76,7 @@ displayCommunity model =
                         [ if (checkFriendship model.user user == Pending) then
                             div
                                 [ class "btn-friend" ]
-                                [ text "Demand - Pending" ]
+                                [ text "Pending" ]
                           else if (checkFriendship model.user user == Validated) then
                             div
                                 [ class "btn-friend" ]
