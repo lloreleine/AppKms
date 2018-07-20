@@ -194,11 +194,11 @@ update msg model =
             in
                 ( { model | newChallengeKms = newIntKms }, Cmd.none )
 
-        SelectParticipant participant ->
+        SelectParticipant user ->
             let
                 newParticipantsList =
                     List.append model.newChallengeParticipants
-                        [ { name = participant.name
+                        [ { name = user.name
                           , kms = 0.0
                           }
                         ]

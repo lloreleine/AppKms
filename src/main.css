@@ -357,6 +357,11 @@ body {
   background: linear-gradient(to right, #CECECE, white);
 }
 
+.challenge-participant-disabled {
+  color: grey;
+  text-decoration: line-through;
+}
+
 /* API Test Page */
 .content-API {
   margin-top: 50px;
