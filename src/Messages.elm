@@ -31,6 +31,8 @@ type Msg
     | WeatherTemp (Result Http.Error Float)
     | Weather (Result Http.Error String)
     | DisplayChallengeForm
+    | DisplayChallengeCard Challenge
+    | DiscardChallengeCard
     | SaveNewChallengeName String
     | SaveNewChallengeKms String
     | SelectParticipant User

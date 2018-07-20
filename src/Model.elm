@@ -21,6 +21,7 @@ type alias Model =
     , destinations : List Destination
     , kmsAchieved : Float
     , challenges : List Challenge
+    , displayChallengesCard : Challenge
     , setChallengeForm : Bool
     , newChallengeName : String
     , newChallengeKms : Float
@@ -143,6 +144,12 @@ initialModel =
           , own = False
           }
         ]
+    , displayChallengesCard =
+        { name = ""
+        , kms = 0.0
+        , participants = []
+        , own = False
+        }
     , setChallengeForm = False
     , newChallengeName = ""
     , newChallengeKms = 0.0

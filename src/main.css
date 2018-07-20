@@ -127,6 +127,12 @@ body {
   margin-bottom: 20px;
 }
 
+.challenges-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -138,10 +144,10 @@ body {
   flex-direction: column;
   align-items: center;
   width: 290px;
-  max-height: 223px;
+  max-height: 235px;
   overflow: hidden;
   text-align: center;
-  margin: 8px 15px 8px 0;
+  margin: 8px 7px 8px 7px;
   padding: 0 15px 10px 15px;
   box-shadow: 0 2px 6px grey;
 }
@@ -192,6 +198,101 @@ body {
   margin-top: 10px;
   margin-left: 140px;
 }
+
+/* Single Challenge Card */
+
+.go-back-challengesList {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 150px;
+  left: 300px;
+  cursor: pointer;
+}
+
+.go-back-challengesList div {
+  margin-left: 8px;
+}
+
+.go-back-challengesList:hover div {
+  text-decoration: underline;
+}
+
+/* Deployed Challenge Card */
+
+.card-challenge-deployed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 290px;
+  text-align: center;
+  margin: 8px 7px 8px 7px;
+  padding: 0 15px 25px 15px;
+  box-shadow: 0 2px 6px grey;
+}
+
+.card-challenge-deployed h3 {
+  margin: 5px;
+  padding: 0;
+}
+
+.challenge-deployed-subtitle {
+  border-top: 1px solid grey;
+  margin: 10px 0;
+  padding-top: 30px;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 15px;
+  width: 200px;
+}
+
+.card-deployed-participants {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+/* Podium Grid */
+
+.podium-participants {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 8px;
+}
+
+.participant-challenge div {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  padding: 5px;
+}
+
+.podium-participants div:first-child, .podium-participants div:nth-child(n+4) {
+  grid-column: 1 / 3;
+  margin: auto;
+}
+
+.podium-participants div:first-child div {
+  background-color: gold;
+  box-shadow: 2px 4px 4px goldenrod;
+}
+
+.podium-participants div:nth-child(2) div {
+  background-color: silver;
+  box-shadow: 2px 4px 4px dimgray;
+}
+
+.podium-participants div:nth-child(3) div {
+  background-color: goldenrod;
+  box-shadow: 2px 4px 4px darkgoldenrod;
+}
+
+.podium-participants div:nth-child(n+4) {
+  font-style: italic;
+  font-size: 15px;
+  height: 35px;
+}
+
 
 /* Set Form Challenge */
 

@@ -169,6 +169,21 @@ update msg model =
         DisplayChallengeForm ->
             ( { model | setChallengeForm = not model.setChallengeForm }, Cmd.none )
 
+        DisplayChallengeCard challenge ->
+            ( { model | displayChallengesCard = challenge }, Cmd.none )
+
+        DiscardChallengeCard ->
+            ( { model
+                | displayChallengesCard =
+                    { name = ""
+                    , kms = 0.0
+                    , participants = []
+                    , own = False
+                    }
+              }
+            , Cmd.none
+            )
+
         SaveNewChallengeName name ->
             ( { model | newChallengeName = name }, Cmd.none )
 
